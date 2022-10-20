@@ -22,7 +22,7 @@
   margin: 20px; /*调整字的间距*/
 }
 #app nav a:last-child {
-  margin-right: 0;
+  margin-right: 0; /*消除最后一个“注册”字段右边的margin值*/
 }
 #app main {
   width: 100%;

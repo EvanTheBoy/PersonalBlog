@@ -5,11 +5,11 @@
     <title>个人博客</title>
     <link rel="stylesheet" href="/static/css/index.css">
     <link rel="stylesheet" href="/static/css/reset.css">
-    <link rel="stylesheet" href="/static/css/theme/dark.css">
     <script src="/static/vue/vue.js"></script>
 </head>
 <body>
 <div id="app">
+    <link rel="stylesheet" :href="'/static/css/theme/'+ theme + '.css'">
     <nav>
         <div class="left">
             <a href="#">首页</a>
@@ -36,12 +36,25 @@
         el: '#app',
         delimiters: ["[[", "]]"],
         data:{
-            theme: 'light'  {# 默认主题是白色 #}
+            theme: 'light'  //默认主题是白色
+        },
+        created() {
+            this.initTheme();
         },
         methods: {
-            {#设置主题#}
+            //初始化主题
+            initTheme() {
+                //从持久化存储层中拿到这个theme，并判断是否存在
+                let theme = localStorage.getItem('theme');
+                if (theme) {
+                    this.theme = theme;
+                }
+            },
+            //设置主题
             setTheme(themeName) {
-
+                this.theme = themeName;
+                //仍要将其持久化存储,否则一刷新就没了
+                localStorage.setItem('theme', themeName);
             }
         }
     })

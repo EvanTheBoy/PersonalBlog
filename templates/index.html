@@ -5,6 +5,7 @@
     <title>个人博客</title>
     <link rel="stylesheet" href="/static/css/index.css">
     <link rel="stylesheet" href="/static/css/reset.css">
+    <script src="/static/vue/vue.js"></script>
 </head>
 <body>
 <div id="app">
@@ -17,6 +18,7 @@
         </div>
         <div class="right">
             <a href="#">登录</a>
+            <a href="#">[[ msg ]]</a>
             <a href="#">注册</a>
         </div>
     </nav>
@@ -27,5 +29,14 @@
 
     </footer>
 </div>
+<script>
+    new Vue({
+        el: '#app',
+        delimiters: ["[[", "]]"],
+        data:{
+            msg: '我知道'
+        }
+    })
+</script>
 </body>
 </html>

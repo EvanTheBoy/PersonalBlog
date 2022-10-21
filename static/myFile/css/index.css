@@ -17,6 +17,7 @@
   width: 40%;
   display: flex;
   justify-content: right; /*让“登录”和“注册”两个按钮往右排*/
+  img-width: 20px;
 }
 #app nav a {
   margin: 20px; /*调整字的间距*/

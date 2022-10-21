@@ -173,7 +173,7 @@ class Migration(migrations.Migration):
                 ),
                 ("href", models.URLField(verbose_name="跳转链接")),
                 (
-                    "img",
+                    "image",
                     models.FileField(
                         blank=True,
                         help_text="单图",

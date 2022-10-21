@@ -5,7 +5,7 @@
 #app nav {
   width: calc(100% - 240px); /*设置calc函数自己计算宽度，否则会出现奇怪的横向滚动条*/
   height: 60px;
-  background-color: blanchedalmond;
+  background-color: var(--nav_bg);
   display: flex;
   align-items: center;
   padding: 0 120px; /*文字不要顶格, 要和边上拉开一点距离*/
@@ -20,19 +20,22 @@
 }
 #app nav a {
   margin: 20px; /*调整字的间距*/
+  color: var(--nav_color);
 }
 #app nav a:last-child {
   margin-right: 0; /*消除最后一个“注册”字段右边的margin值*/
 }
 #app main {
   width: 100%;
-  min-height: 400px;
-  background-color: yellow;
+  min-height: 800px;
+  background-color: var(--main_bg);
+  color: var(--main_color);
 }
 #app footer {
   width: 100%;
   height: 400px;
-  background-color: aqua;
+  background-color: var(--footer_bg);
+  color: var(--main_color);
 }
 
 /*# sourceMappingURL=index.css.map */

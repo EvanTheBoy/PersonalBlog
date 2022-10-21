@@ -5,6 +5,7 @@
     <title>个人博客</title>
     <link rel="stylesheet" href="/static/css/index.css">
     <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="stylesheet" href="/static/css/theme/dark.css">
     <script src="/static/vue/vue.js"></script>
 </head>
 <body>
@@ -17,16 +18,17 @@
             <a href="#">关于</a>
         </div>
         <div class="right">
+            <a href="#" @click="setTheme('light')">白色主题</a>
+            <a href="#" @click="setTheme('dark')">黑色主题</a>
             <a href="#">登录</a>
-            <a href="#">[[ msg ]]</a>
             <a href="#">注册</a>
         </div>
     </nav>
     <main>
-
+        Contents
     </main>
     <footer>
-
+        底部信息栏
     </footer>
 </div>
 <script>
@@ -34,7 +36,13 @@
         el: '#app',
         delimiters: ["[[", "]]"],
         data:{
-            msg: '我知道'
+            theme: 'light'  {# 默认主题是白色 #}
+        },
+        methods: {
+            {#设置主题#}
+            setTheme(themeName) {
+
+            }
         }
     })
 </script>

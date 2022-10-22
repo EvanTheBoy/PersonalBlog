@@ -28,6 +28,19 @@
     }
   }
 
+  header {
+    width: 100%;
+    height: 700px;
+    > div {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;   /*超出的，即溢出的部分直接让其隐藏*/
+      img {
+        width: 100%;
+      }
+    }
+  }
+
   main {
     width: 100%;
     min-height: 800px;

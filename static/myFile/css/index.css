@@ -5,9 +5,13 @@
 #app nav {
   width: calc(100% - 240px); /*设置calc函数自己计算宽度，否则会出现奇怪的横向滚动条*/
   height: 60px;
-  background-color: var(--nav_bg);
+  /*background-color: var(--nav_bg);*/
   display: flex;
   align-items: center;
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
   padding: 0 120px; /*文字不要顶格, 要和边上拉开一点距离*/
 }
 #app nav .left {

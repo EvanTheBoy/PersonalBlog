@@ -32,18 +32,11 @@
         </div>
     </nav>
     <header>
-        <div class="slideshow">
-            <img src="/static/myFile/image/header/slideshow1.jpg" alt="">
-        </div>
-        <div class="slideshow">
-            <img src="/static/myFile/image/header/slideshow2.jpg" alt="">
-        </div>
-        <div class="slideshow">
-            <img src="/static/myFile/image/header/slideshow3.jpg" alt="">
-        </div>
-        <div class="slideshow">
-            <img src="/static/myFile/image/header/slideshow4.jpg" alt="">
-        </div>
+        {% for img in img_list %}
+            <div class="slideshow">
+                <img src="{{ img }}" alt="">
+            </div>
+        {% endfor %}
     </header>
     <main>
         Contents
@@ -95,7 +88,7 @@
             i.style.opacity = 0;
         }
         menu_img[index].style.opacity = 1;
-    }, 2000)
+    }, 6000)
 </script>
 </body>
 </html>

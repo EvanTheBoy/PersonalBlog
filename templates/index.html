@@ -32,8 +32,17 @@
         </div>
     </nav>
     <header>
-        <div>
-            <img src="/static/myFile/image/header/slideshow1" alt="">
+        <div class="slideshow">
+            <img src="/static/myFile/image/header/slideshow1.jpg" alt="">
+        </div>
+        <div class="slideshow">
+            <img src="/static/myFile/image/header/slideshow2.jpg" alt="">
+        </div>
+        <div class="slideshow">
+            <img src="/static/myFile/image/header/slideshow3.jpg" alt="">
+        </div>
+        <div class="slideshow">
+            <img src="/static/myFile/image/header/slideshow4.jpg" alt="">
         </div>
     </header>
     <main>
@@ -70,6 +79,23 @@
             }
         }
     })
+
+    let menu_img = document.querySelectorAll('.slideshow');
+    //获取轮播图的长度
+    let menu_length = menu_img.length;
+    //指定一个位置
+    let index = 0;
+    //设置定时器
+    setInterval(() => {
+        ++index;
+        if (index === menu_length) {
+            index = 0;
+        }
+        for (let i of menu_img) {
+            i.style.opacity = 0;
+        }
+        menu_img[index].style.opacity = 1;
+    }, 2000)
 </script>
 </body>
 </html>

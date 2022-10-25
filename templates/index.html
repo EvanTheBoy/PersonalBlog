@@ -32,18 +32,9 @@
             </div>
         </div>
     </nav>
-    <header>
-        {% for img in img_list %}
-            <div class="slideshow">
-                <img src="{{ img }}" alt="">
-            </div>
-        {% endfor %}
-    </header>
+    {% banner 'index' %}
     <main>
         Contents
-        <div>
-            {{ 2|add1 }}
-        </div>
     </main>
     <footer>
         底部信息栏
@@ -83,7 +74,9 @@
     //指定一个位置
     let index = 0;
     //设置定时器
-    setInterval(() => {
+    let timer = null;
+    clearInterval(timer);
+    timer = setInterval(() => {
         ++index;
         if (index === menu_length) {
             index = 0;

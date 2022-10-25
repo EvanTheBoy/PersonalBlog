@@ -4,13 +4,9 @@ register = template.Library()
 
 
 # 这里是自定义过滤器
-@register.filter
-def add1(item):
-    return int(item) + 1
-
-
 @register.inclusion_tag('my_tag/headers.html')
 def banner(menu_name):
+    print(menu_name)
     img_list = [
         "/static/myFile/image/header/slideshow1.jpg",
         "/static/myFile/image/header/slideshow2.jpg",

@@ -56,6 +56,7 @@
     background-color: var(--main_bg);
     color: var(--main_color);
   }
+
   footer {
     width: 100%;
     display: flex;
@@ -123,9 +124,12 @@
 
     .beian {
       a {
-        display: flex;
         align-items: center;
       }
+    }
+
+    #unify {
+      margin-bottom: 11px;
     }
   }
 }

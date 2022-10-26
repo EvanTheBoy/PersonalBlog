@@ -34,7 +34,11 @@
     </nav>
     {% banner 'index' %}
     <main>
-        Contents
+        {% block main %}
+            <div class="main">
+
+            </div>
+        {% endblock %}
     </main>
     <footer>
         <div class="left">

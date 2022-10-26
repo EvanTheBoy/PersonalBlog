@@ -54,10 +54,18 @@
   width: 100%;
 }
 #app main {
-  width: 100%;
+  width: calc(100% - 240px);
+  padding: 20px 120px;
   height: 1100px;
   background-color: var(--main_bg);
   color: var(--main_color);
+  display: flex;
+  justify-content: center;
+}
+#app .main {
+  width: 1200px;
+  height: 200px;
+  background-color: #26c6e1;
 }
 #app footer {
   width: 100%;

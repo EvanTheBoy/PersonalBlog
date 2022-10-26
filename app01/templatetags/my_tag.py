@@ -11,6 +11,6 @@ def banner(menu_name):
         "/static/myFile/image/header/slideshow1.jpg",
         "/static/myFile/image/header/slideshow2.jpg",
         "/static/myFile/image/header/slideshow3.jpg",
-        "/static/myFile/image/header/slideshow4.jpg"
+        "/static/myFile/image/header/slideshow4.jpg",
     ]
     return {"img_list": img_list}

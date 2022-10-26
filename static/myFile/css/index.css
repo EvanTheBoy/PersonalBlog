@@ -45,6 +45,10 @@
   position: absolute;
   overflow: hidden; /*超出的，即溢出的部分直接让其隐藏*/
   transition: all 1s;
+  opacity: 0;
+}
+#app header > .slideshow:first-child {
+  opacity: 1;
 }
 #app header > .slideshow img {
   width: 100%;

@@ -6,10 +6,3 @@ a {
     text-decoration: none;  /*去除文字的下划线*/
     color: #333;
 }
-
-p {
-    margin-block-start: 0;
-    margin-block-end: 0;
-    margin-inline-start: 0;
-    margin-inline-end: 0;
-}

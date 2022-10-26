@@ -6,3 +6,7 @@ a {
     text-decoration: none;  /*去除文字的下划线*/
     color: #333;
 }
+
+p {
+    margin: 0;
+}

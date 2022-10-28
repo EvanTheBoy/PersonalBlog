@@ -74,6 +74,10 @@
     display: flex;
     justify-content: space-between;
 
+    > div > div {
+      margin-bottom: 20px;
+    }
+
     .left {
       width: 68%;
       height: 100px;
@@ -177,7 +181,7 @@
 
     > div {
       a {
-        color: #e4ab0d;
+        font-size: 14px;
       }
     }
   }

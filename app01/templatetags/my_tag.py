@@ -8,7 +8,7 @@ register = template.Library()
 def banner(menu_name):
     print(menu_name)
     img_list = [
-        "/static/myFile/image/header/slideshow1.jpg",
+        "/static/myFile/image/header/slideshow1.png",
         "/static/myFile/image/header/slideshow2.jpg",
         "/static/myFile/image/header/slideshow3.jpg",
         "/static/myFile/image/header/slideshow4.jpg",

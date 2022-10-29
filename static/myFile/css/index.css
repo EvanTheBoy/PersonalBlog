@@ -95,6 +95,45 @@
 #app .main .left {
   width: 68%;
 }
+#app .main .left .boutique_article > .body {
+  padding: 0 20px;
+}
+#app .main .left .boutique_article > .body > ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+#app .main .left .boutique_article > .body > ul > li {
+  width: 50%;
+  box-sizing: border-box;
+  display: flex;
+  padding: 10px 0;
+}
+#app .main .left .boutique_article > .body > ul > li .left {
+  width: 40%;
+}
+#app .main .left .boutique_article > .body > ul > li .left > div {
+  overflow: hidden;
+  width: 100%;
+  height: 80px;
+  border-radius: 5px;
+}
+#app .main .left .boutique_article > .body > ul > li .left img {
+  width: 100%;
+  transition: all 0.3s;
+}
+#app .main .left .boutique_article > .body > ul > li .left img:hover {
+  transform: scale(1.1);
+}
+#app .main .left .boutique_article > .body > ul > li .right {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+#app .main .left .boutique_article > .body > ul > li .right span {
+  font-size: 14px;
+  color: #555;
+}
 #app .main .left .blog_article > .body {
   background-color: transparent;
   padding: 0;

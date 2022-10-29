@@ -108,6 +108,47 @@
 
     .left {
       width: 68%;
+      .boutique_article > .body {
+        padding: 0 20px;
+        >ul {
+          display: flex;
+          flex-wrap: wrap;
+          > li {
+            width: 50%;
+            box-sizing: border-box;
+            display: flex;
+            padding: 10px 0;
+
+            .left {
+              width: 40%;
+              > div {
+                overflow: hidden;
+                width: 100%;
+                height: 80px;
+                border-radius: 5px;
+              }
+              img {
+                width: 100%;
+                transition: all 0.3s;
+
+                &:hover {
+                  transform: scale(1.1);
+                }
+              }
+            }
+            .right {
+              width: 60%;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+              span {
+                font-size: 14px;
+                color: #555;
+              }
+            }
+          }
+        }
+      }
 
       .blog_article > .body {
         background-color: transparent;

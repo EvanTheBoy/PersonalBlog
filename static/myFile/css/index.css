@@ -101,6 +101,7 @@
 }
 #app .main .left .blog_article > .body > ul {
   width: 100%;
+  margin: 0;
 }
 #app .main .left .blog_article > .body > ul > li {
   width: 100%;
@@ -115,6 +116,7 @@
 #app .main .left .blog_article > .body > ul > li .left > div {
   width: 100%;
   height: 200px;
+  border-radius: 5px;
   overflow: hidden;
 }
 #app .main .left .blog_article > .body > ul > li .left img {

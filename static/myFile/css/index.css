@@ -109,17 +109,18 @@
 }
 #app .main .left .blog_article > .body > ul > li .left {
   width: 30%;
-  padding: 10px 10px 20px 20px;
+  padding: 10px 10px 10px 20px;
 }
 #app .main .left .blog_article > .body > ul > li .left img {
   width: 100%;
 }
 #app .main .left .blog_article > .body > ul > li .right {
   width: 70%;
-  padding: 10px 20px 20px 10px;
+  padding: 10px 20px 10px 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: relative;
 }
 #app .main .left .blog_article > .body > ul > li .right > h2 {
   font-size: 20px;
@@ -133,6 +134,21 @@
 }
 #app .main .left .blog_article > .body > ul > li .right .article-info > span i {
   margin-right: 5px;
+}
+#app .main .left .blog_article > .body > ul > li .right > a {
+  width: 100px;
+  height: 35px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background-color: #26c6da;
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  cursor: pointer;
 }
 #app .main .right {
   width: 30%;

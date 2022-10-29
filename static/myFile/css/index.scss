@@ -123,7 +123,7 @@
 
             .left {
               width: 30%;
-              padding: 10px 10px 20px 20px;
+              padding: 10px 10px 10px 20px;
 
               img {
                 width: 100%;
@@ -132,10 +132,11 @@
 
             .right {
               width: 70%;
-              padding: 10px 20px 20px 10px;
+              padding: 10px 20px 10px 10px;
               display: flex;
               flex-direction: column;
               justify-content: space-between;
+              position: relative;
 
               > h2 {
                 font-size: 20px;
@@ -151,6 +152,22 @@
                     margin-right: 5px;
                   }
                 }
+              }
+              > a {
+                width: 100px;
+                height: 35px;
+                position: absolute;
+                right: 0;
+                bottom: 0;
+
+                background-color: #26c6da;
+                border: none;
+                color: white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 5px;
+                cursor: pointer;
               }
             }
           }

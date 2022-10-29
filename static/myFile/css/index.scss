@@ -108,7 +108,54 @@
 
     .left {
       width: 68%;
-      height: 100px;
+
+      .blog_article > .body {
+        background-color: transparent;
+        padding: 0;
+
+        > ul {
+          width: 100%;
+
+          > li {
+            width: 100%;
+            display: flex;
+            background-color: white;
+
+            .left {
+              width: 30%;
+              padding: 10px 10px 20px 20px;
+
+              img {
+                width: 100%;
+              }
+            }
+
+            .right {
+              width: 70%;
+              padding: 10px 20px 20px 10px;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+
+              > h2 {
+                font-size: 20px;
+              }
+
+              .article-info {
+                font-size: 14px;
+                color: #555;
+                > span {
+                  margin-right: 10px;
+
+                  i {
+                    margin-right: 5px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
     .right {
       width: 30%;

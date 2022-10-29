@@ -107,11 +107,22 @@
   width: 100%;
   display: flex;
   background-color: white;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+#app .main .left .blog_article > .body > ul > li:first-child {
+  border-radius: 0 0 5px 5px;
+}
+#app .main .left .blog_article > .body > ul > li:first-child .left {
+  padding: 10px 10px 20px 20px;
+}
+#app .main .left .blog_article > .body > ul > li:first-child .right {
+  padding: 10px 20px 20px 10px;
 }
 #app .main .left .blog_article > .body > ul > li .left {
   width: 30%;
   box-sizing: border-box;
-  padding: 10px 10px 10px 20px;
+  padding: 20px 10px 10px 20px;
 }
 #app .main .left .blog_article > .body > ul > li .left > div {
   width: 100%;

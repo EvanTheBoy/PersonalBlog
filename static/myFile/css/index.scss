@@ -123,10 +123,22 @@
 
             .left {
               width: 30%;
+              box-sizing: border-box;
               padding: 10px 10px 10px 20px;
+
+              > div {
+                width: 100%;
+                height: 200px;
+                overflow: hidden;
+              }
 
               img {
                 width: 100%;
+                transition: all 0.3s;
+
+                &:hover {
+                  transform: scale(1.1);
+                }
               }
             }
 

@@ -109,10 +109,20 @@
 }
 #app .main .left .blog_article > .body > ul > li .left {
   width: 30%;
+  box-sizing: border-box;
   padding: 10px 10px 10px 20px;
+}
+#app .main .left .blog_article > .body > ul > li .left > div {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
 }
 #app .main .left .blog_article > .body > ul > li .left img {
   width: 100%;
+  transition: all 0.3s;
+}
+#app .main .left .blog_article > .body > ul > li .left img:hover {
+  transform: scale(1.1);
 }
 #app .main .left .blog_article > .body > ul > li .right {
   width: 70%;

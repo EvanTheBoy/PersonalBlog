@@ -166,8 +166,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 33%;
+            width: 33.33%;
             height: 40px;
+            box-sizing: border-box;
 
             &:nth-child(6n+1), &:nth-child(6n+2), &:nth-child(6n+3) {
               background-color: #f5f5f5;

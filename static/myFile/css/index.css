@@ -95,6 +95,18 @@
 #app .main .left {
   width: 68%;
 }
+#app .main .left .boutique_article > .title .switch_article span {
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+#app .main .left .boutique_article > .title .switch_article span:hover {
+  color: #ff9800;
+}
+#app .main .left .boutique_article > .title .switch_article span[active] {
+  color: #ff9800;
+}
 #app .main .left .boutique_article > .body {
   padding: 0 20px;
 }
@@ -108,6 +120,16 @@
   display: flex;
   padding: 10px 0;
 }
+#app .main .left .boutique_article > .body > ul > li:nth-child(1), #app .main .left .boutique_article > .body > ul > li:nth-child(3), #app .main .left .boutique_article > .body > ul > li:nth-child(5) {
+  border-right: 1px solid #f0eeee;
+  padding: 10px 10px 10px 0;
+}
+#app .main .left .boutique_article > .body > ul > li:nth-child(2), #app .main .left .boutique_article > .body > ul > li:nth-child(4), #app .main .left .boutique_article > .body > ul > li:nth-child(6) {
+  padding: 10px;
+}
+#app .main .left .boutique_article > .body > ul > li:nth-child(1), #app .main .left .boutique_article > .body > ul > li:nth-child(2), #app .main .left .boutique_article > .body > ul > li:nth-child(3), #app .main .left .boutique_article > .body > ul > li:nth-child(4) {
+  border-bottom: 1px solid #f0eeee;
+}
 #app .main .left .boutique_article > .body > ul > li .left {
   width: 40%;
 }
@@ -115,7 +137,6 @@
   overflow: hidden;
   width: 100%;
   height: 80px;
-  border-radius: 5px;
 }
 #app .main .left .boutique_article > .body > ul > li .left img {
   width: 100%;
@@ -126,9 +147,16 @@
 }
 #app .main .left .boutique_article > .body > ul > li .right {
   width: 60%;
+  padding-left: 5px;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+#app .main .left .boutique_article > .body > ul > li .right p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 #app .main .left .boutique_article > .body > ul > li .right span {
   font-size: 14px;

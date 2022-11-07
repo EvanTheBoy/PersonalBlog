@@ -16,9 +16,27 @@ main {
   height: 600px;
   background-color: white;
   border-radius: 5px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
-main .left img {
-  width: 450px;
+main .bottom img {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 445px;
+}
+main .top {
+  padding: 20px;
+}
+main .top h2 {
+  display: flex;
+  justify-content: center;
+}
+main .top .login_forms {
+  display: flex;
+  flex-direction: column;
 }
 
 /*# sourceMappingURL=login.css.map */

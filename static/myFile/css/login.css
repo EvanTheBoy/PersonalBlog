@@ -57,6 +57,9 @@ main .top .login_forms input {
 main .top .login_forms input:focus {
   border: 1px solid #ff9800;
 }
+main .top .login_forms input.register_input {
+  margin-bottom: 13px;
+}
 main .top .login_forms .code {
   display: flex;
   width: 100%;

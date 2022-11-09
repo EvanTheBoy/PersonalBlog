@@ -1,10 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'login.html' %}
 
-</body>
-</html>
+{% block title %}
+    <title>个人博客|用户注册</title>
+{% endblock %}
+
+{% block main_title %}
+     <a href="/login">登录</a> / <a class="active" href="/register">注册</a>
+{% endblock %}
+
+{% block form %}
+    <input type="text" placeholder="请输入用户名" class="register_input">
+    <input type="text" placeholder="请输入密码" class="register_input">
+    <input type="text" placeholder="请再次输入密码" class="register_input">
+    <div class="code">
+        <input type="text" placeholder="请输入验证码" class="register_input">
+        <img src="/static/myFile/image/login/code.png" alt="">
+    </div>
+    <button>登录</button>
+{% endblock %}

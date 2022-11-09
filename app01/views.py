@@ -14,5 +14,5 @@ def login(request):
     return render(request, "login.html")
 
 
-def regiser(request):
+def register(request):
     return render(request, "register.html")

@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>个人博客</title>
+    {% block title %}
+        <title>个人博客|用户登录</title>
+    {% endblock %}
     <link rel="stylesheet" href="/static/myFile/css/reset.css">
     <link rel="stylesheet" href="/static/myFile/css/login.css">
 </head>
@@ -11,16 +13,20 @@
     <main>
         <div class="top">
             <div class="title">
-                <a class="active" href="/login">登录</a> / <a href="/register">注册</a>
+                {% block main_title %}
+                     <a class="active" href="/login">登录</a> / <a href="/register">注册</a>
+                {% endblock %}
             </div>
             <div class="login_forms">
-                <input type="text" placeholder="请输入用户名">
-                <input type="text" placeholder="请输入密码">
-                <div class="code">
-                    <input type="text" placeholder="请输入验证码">
-                    <img src="/static/myFile/image/login/code.png" alt="">
-                </div>
-                <button>登录</button>
+                {% block form %}
+                    <input type="text" placeholder="请输入用户名">
+                    <input type="text" placeholder="请输入密码">
+                    <div class="code">
+                        <input type="text" placeholder="请输入验证码">
+                        <img src="/static/myFile/image/login/code.png" alt="">
+                    </div>
+                    <button>登录</button>
+                {% endblock %}
             </div>
             <div class="other_login">
                 <p>其他登录方式</p>

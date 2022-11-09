@@ -5,7 +5,6 @@ body {
   #app {
     width: 100%;
     height: 100%;
-    background-color: #26c6da;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,9 +12,10 @@ body {
 }
 
 main {
-  width: 1000px;
-  height: 600px;
+  width: 650px;
+  height: 700px;
   background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   position: relative;
   display: flex;
@@ -32,14 +32,108 @@ main {
   }
 
   .top {
-    padding: 20px;
-    h2 {
-      display: flex;
-      justify-content: center;
+    padding: 40px 20px 20px 20px;
+
+    .title {
+      text-align: center;
+      a {
+        color: #808595;
+      }
+
+      a.active {
+        color: #ff9800;
+      }
     }
+
     .login_forms {
+      margin-top: 20px;
+      margin-bottom: 10px;
       display: flex;
       flex-direction: column;
+
+      input {
+        margin-bottom: 20px;
+
+        border: 1px solid #f0eeee;
+        outline: none;
+        height: 40px;
+        border-radius: 5px;
+        padding-left: 20px;
+        transition: all 0.3s;
+
+        &:focus {
+          border: 1px solid #ff9800;
+        }
+      }
+
+      .code {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        input {
+          width: 60%;
+        }
+
+        img {
+          height: 44px;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+      }
+
+      > button {
+        border: none;
+        cursor: pointer;
+        height: 40px;
+        color: white;
+        border-radius: 5px;
+        background-color: #ff9800;
+      }
+    }
+
+    .other_login {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+
+      > p {
+        font-size: 14px;
+        color: #808595;
+      }
+
+      &:before {
+        position: absolute;
+        content: '';
+        display: block;
+        width: 200px;
+        height: 1px;
+        background-color: #808595;
+        left: 0;
+        top: 23px;
+      }
+
+      &:after {
+        position: absolute;
+        content: '';
+        display: block;
+        width: 200px;
+        height: 1px;
+        background-color: #808595;
+        right: 0;
+        top: 23px;
+      }
+
+      > div {
+        margin-top: 20px;
+        img {
+          width: 40px;
+          margin-right: 10px;
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
     }
   }
 }

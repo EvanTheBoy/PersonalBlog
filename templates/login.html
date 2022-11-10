@@ -19,13 +19,13 @@
             </div>
             <div class="login_forms">
                 {% block form %}
-                    <input type="text" placeholder="请输入用户名">
-                    <input type="text" placeholder="请输入密码">
+                    <input type="text" v-model="login_form.name" placeholder="请输入用户名">
+                    <input type="text" v-model="login_form.pwd" placeholder="请输入密码">
                     <div class="code">
-                        <input type="text" placeholder="请输入验证码">
+                        <input type="text" v-model="login_form.code" placeholder="请输入验证码">
                         <img src="/static/myFile/image/login/code.png" alt="">
                     </div>
-                    <button>登录</button>
+                    <button @click="login">登录</button>
                 {% endblock %}
             </div>
             <div class="other_login">
@@ -44,5 +44,27 @@
         </div>
     </main>
 </div>
+<script type="text/javascript" src="https://cdn.bootcss.com/qs/6.7.0/qs.min.js"></script>
+<script src="/static/axios/axios.min.js"></script>
+<script src="/static/vue/vue.js"></script>
+<script>
+    new Vue({
+        el:'#app',
+        data: {
+            login_form: {
+                name:'',
+                pwd:'',
+                code:''
+            }
+        },
+        methods: {
+            login() {
+                axios.post('/login/', this.login_form).then(res=>{
+                    console.log(res)
+                })
+            }
+        }
+    })
+</script>
 </body>
 </html>

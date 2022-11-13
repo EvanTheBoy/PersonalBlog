@@ -23,5 +23,6 @@ urlpatterns = [
     path('', views.get_index),
     path('news/', views.news),
     path('login/', views.login),
-    path('register/', views.register)
+    path('register/', views.register),
+    path('login/random_code/', views.get_random_code)
 ]

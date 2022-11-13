@@ -18,6 +18,8 @@ def login(request):
     return render(request, "login.html")
 
 
+# 在login图片的src是一个路由，根据这个路由找到urls.py里面对应的路由，从而找到views函数，这个函数直接访问生成的图片位置
+# 最终给到前端
 def get_random_code(request):
     fp = open(r'F:\PersonalBlogProject\app01\utils\new_img.png', 'rb')
     data = fp.read()

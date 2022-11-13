@@ -1,5 +1,3 @@
-import json
-
 from django.shortcuts import render
 from django.http import JsonResponse
 
@@ -15,10 +13,8 @@ def news(request):
 
 def login(request):
     if request.method == 'POST':
-        data = request.body   # 请求体
-        dict_data = json.loads(data, encoding='utf-8')
-        print(request.POST)
-        return JsonResponse(request.POST)
+        data = request.data
+        return JsonResponse(data)
     return render(request, "login.html")
 
 

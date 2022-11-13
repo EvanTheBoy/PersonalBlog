@@ -18,6 +18,7 @@
                 {% endblock %}
             </div>
             <div class="login_forms">
+            {% csrf_token %}
                 {% block form %}
                     <input type="text" v-model="login_form.name" placeholder="请输入用户名">
                     <input type="text" v-model="login_form.pwd" placeholder="请输入密码">
@@ -48,6 +49,20 @@
 <script src="/static/axios/axios.min.js"></script>
 <script src="/static/vue/vue.js"></script>
 <script>
+    //请求中间件
+    axios.interceptors.request.use(request => {
+        if (request.method === 'post') {
+            let csrf_token = document.querySelector('input[name="csrfmiddlewaretoken"]').value
+            request.headers['X-CSRFToken'] = csrf_token
+        }
+        return request
+    })
+
+    //响应中间件
+    axios.interceptors.response.use(response => {
+        return response.data
+    })
+
     new Vue({
         el:'#app',
         data: {

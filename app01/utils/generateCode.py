@@ -52,7 +52,7 @@ def generate_random_code(size=(200, 50), length=4, point_num=80, line_num=8):
 
     # 读取内存句柄
     data = f.getvalue()
-    return data
+    return data, valid_code
 
 
 if __name__ == '__main__':

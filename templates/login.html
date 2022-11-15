@@ -7,6 +7,8 @@
     {% endblock %}
     <link rel="stylesheet" href="/static/myFile/css/reset.css">
     <link rel="stylesheet" href="/static/myFile/css/login.css">
+    <!-- import CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 </head>
 <body>
 <div id="app">
@@ -20,10 +22,10 @@
             <div class="login_forms">
             {% csrf_token %}
                 {% block form %}
-                    <input type="text" v-model="login_form.name" placeholder="请输入用户名">
-                    <input type="text" v-model="login_form.pwd" placeholder="请输入密码">
+                    <input type="text" ref="login_form_name" v-model="login_form.name" placeholder="请输入用户名">
+                    <input type="text" ref="login_form_pwd" v-model="login_form.pwd" placeholder="请输入密码">
                     <div class="code">
-                        <input type="text" v-model="login_form.code" placeholder="请输入验证码">
+                        <input type="text" ref="login_form_code" v-model="login_form.code" placeholder="请输入验证码">
                         <img src="/login/random_code" alt="">
                     </div>
                     <button @click="login">登录</button>
@@ -48,6 +50,8 @@
 <script type="text/javascript" src="https://cdn.bootcss.com/qs/6.7.0/qs.min.js"></script>
 <script src="/static/axios/axios.min.js"></script>
 <script src="/static/vue/vue.js"></script>
+<!-- import JavaScript -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
 <script>
     //请求中间件
     axios.interceptors.request.use(request => {
@@ -74,8 +78,14 @@
         },
         methods: {
             login() {
-                axios.post('/login/', this.login_form).then(res=>{
-                    console.log(res)
+                axios.post('/login/', this.login_form).then(res => {
+                    //验证错误
+                    if (res.code) {
+                        this.$message.error(res.msg)
+                        this.$refs[`login_form_${res.self}`].focus()
+                        return
+                    }
+                    this.$message.success(res.msg)
                 })
             }
         }

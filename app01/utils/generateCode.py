@@ -1,6 +1,7 @@
 from PIL import Image, ImageDraw, ImageFont
 import string
 import random
+from io import BytesIO
 
 
 # 生成随机颜色，这里返回的是一个元组
@@ -44,7 +45,15 @@ def generate_random_code():
         x2, y2 = random.randint(0, width), random.randint(0, height)
         draw.line((x1, y1, x2, y2), fill=generate_random_color())
 
-    img.save('new_img.png', 'PNG')
+    # 创建一个内存句柄
+    f = BytesIO()
+
+    # 直接将图片保存在内存句柄中
+    img.save(f, 'PNG')
+
+    # 读取内存句柄
+    data = f.getvalue()
+    print(data)
 
 
 if __name__ == '__main__':

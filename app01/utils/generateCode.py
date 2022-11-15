@@ -13,21 +13,20 @@ str_all = string.digits + string.ascii_letters
 
 
 # 生成随机验证码
-def generate_random_code():
+def generate_random_code(size=(200, 50), length=4, point_num=80, line_num=8):
     # 生成一个白色的背景图片
-    width = 200
-    height = 50
+    width, height = size
     img = Image.new('RGB', (width, height), color=(255, 255, 255))
 
     # 生成一个和白色背景图片大小一样的画布
     draw = ImageDraw.Draw(img)
 
     # 生成字体对象
-    font = ImageFont.truetype(font='./font/New Asgard.ttf', size=32)
+    font = ImageFont.truetype(font='/static/myFile/font/New Asgard.ttf', size=32)
 
     # 书写文字
     valid_code = ''
-    for i in range(4):
+    for i in range(length):
         random_char = random.choice(str_all)
         valid_code += random_char
         draw.text((40 * i + 29, 0), random_char, (0, 0, 0), font=font)
@@ -35,12 +34,12 @@ def generate_random_code():
     print(valid_code)
 
     # 随机生成点
-    for i in range(80):
+    for i in range(point_num):
         x, y = random.randint(0, width), random.randint(0, height)
         draw.point((x, y), generate_random_color())
 
     # 随机生成线
-    for i in range(8):
+    for i in range(line_num):
         x1, y1 = random.randint(0, width), random.randint(0, height)
         x2, y2 = random.randint(0, width), random.randint(0, height)
         draw.line((x1, y1, x2, y2), fill=generate_random_color())
@@ -53,7 +52,7 @@ def generate_random_code():
 
     # 读取内存句柄
     data = f.getvalue()
-    print(data)
+    return data
 
 
 if __name__ == '__main__':

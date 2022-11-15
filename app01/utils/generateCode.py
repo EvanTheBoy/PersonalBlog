@@ -22,7 +22,7 @@ def generate_random_code(size=(200, 50), length=4, point_num=80, line_num=8):
     draw = ImageDraw.Draw(img)
 
     # 生成字体对象
-    font = ImageFont.truetype(font='/static/myFile/font/New Asgard.ttf', size=32)
+    font = ImageFont.truetype(font=r'F:\PersonalBlogProject\static\myFile\font\loveroulette-9yry5.ttf', size=32)
 
     # 书写文字
     valid_code = ''

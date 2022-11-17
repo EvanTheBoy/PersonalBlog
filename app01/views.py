@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
 from app01.utils.generateCode import generate_random_code
 from django import forms
-
+from django.contrib import auth
 
 # Create your views here.
 
@@ -25,7 +25,8 @@ class LoginForm(forms.Form):
         name = self.cleaned_data.get('name')
         pwd = self.cleaned_data.get('pwd')
         # 为字段添加错误信息
-        if name != "evan" or pwd != "12345":
+        user = auth.authenticate(username=name, password=pwd)
+        if not user:
             self.add_error("pwd", "用户名或密码错误!")
         return self.cleaned_data
 

@@ -6,10 +6,19 @@ from django import forms
 
 # Create your views here.
 
+# 登录的字段验证
 class LoginForm(forms.Form):
     name = forms.CharField(error_messages={"required": "请输入用户名"})
     pwd = forms.CharField(error_messages={"required": "请输入密码"})
     code = forms.CharField(error_messages={"required": "请输入验证码"})
+
+    # 重写init方法,为了拿request,session里面保存的code.
+    def __init__(self, *args, **kwargs):
+        # 拿到请求对象, 并将其赋给这个类的request
+        self.request = kwargs.pop('request', None)
+
+        # 让这个方法正常执行
+        super().__init__(*args, **kwargs)
 
     # 定义全局钩子
     def clean(self):
@@ -18,6 +27,14 @@ class LoginForm(forms.Form):
         # 为字段添加错误信息
         if name != "evan" or pwd != "12345":
             self.add_error("pwd", "用户名或密码错误!")
+        return self.cleaned_data
+
+    # 验证码的验证应该属于另外的方法，因此不应该在全局钩子中编写
+    def clean_code(self):
+        code: str = self.cleaned_data.get('code')
+        valid_code: str = self.request.session.get('valid_code')
+        if code.upper() != valid_code.upper():
+            self.add_error("code", "验证码错误!")
         return self.cleaned_data
 
 
@@ -29,6 +46,17 @@ def news(request):
     return render(request, "news.html")
 
 
+# 登录失败的可复用代码
+def clean_form(form):
+    # 将错误信息存在一个字典中
+    err_dict: dict = form.errors
+    # 拿到所有错误字段的名字，比如name, pwd这些。通过取得字典的key值可以拿到它们
+    err_valid = list(err_dict.keys())[0]
+    # 拿到第一个字段的错误信息,比如“请输入用户名”这样的信息
+    err_msg = err_dict[err_valid][0]
+    return err_valid, err_msg
+
+
 def login(request):
     if request.method == 'POST':
         res = {
@@ -36,53 +64,12 @@ def login(request):
             'msg': "登录成功!",  # 提示信息
             'self': None  # 提示错误的地方
         }
-        data = request.data
-
-        form = LoginForm(data)
+        form = LoginForm(request.data, request=request)
         if not form.is_valid():
             # 验证不通过
-            # 将错误信息存在一个字典中
-            err_dict: dict = form.errors
-            # 拿到所有错误字段的名字，比如name, pwd这些。通过取得字典的key值可以拿到它们
-            err_valid = list(err_dict.keys())[0]
-            # 拿到第一个字段的错误信息,比如“请输入用户名”这样的信息
-            err_msg = err_dict[err_valid][0]
-            # 配置res的三个信息
-            res['msg'] = err_msg
-            res['self'] = err_valid
+            # 配置res的信息
+            res['self'], res['msg'] = clean_form(form)
             return JsonResponse(res)
-
-        # name = data.get('name')
-        # if not name:
-        #     res['msg'] = "请输入用户名!"
-        #     res['self'] = "name"
-        #     return JsonResponse(res)
-        #
-        # pwd = data.get('pwd')
-        # if not pwd:
-        #     res['msg'] = "请输入密码!"
-        #     res['self'] = "pwd"
-        #     return JsonResponse(res)
-        #
-        # code = data.get('code')
-        # if not code:
-        #     res['msg'] = "请输入验证码!"
-        #     res['self'] = "code"
-        #     return JsonResponse(res)
-        #
-        # # 校验验证码是否正确
-        # valid_code: str = request.session.get('valid_code')
-        # if valid_code.upper() != code.upper():
-        #     res['msg'] = "验证码错误!"
-        #     res["self"] = "code"
-        #     return JsonResponse(res)
-        #
-        # # 校验用户名和密码有没有输对
-        # if name != "Evan" or pwd != "123456":
-        #     res['msg'] = "用户名或密码错误!"
-        #     res["self"] = "name"
-        #     return JsonResponse(res)
-        #
         res['code'] = 0
         return JsonResponse(res)
     return render(request, "login.html")

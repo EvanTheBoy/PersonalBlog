@@ -74,6 +74,12 @@
                 name:'',
                 pwd:'',
                 code:''
+            },
+            register_form: {
+                name:'',
+                pwd:'',
+                re_pwd:'',
+                code:''
             }
         },
         methods: {
@@ -83,6 +89,17 @@
                     if (res.code) {
                         this.$message.error(res.msg)
                         this.$refs[`login_form_${res.self}`].focus()
+                        return
+                    }
+                    this.$message.success(res.msg)
+                })
+            },
+            register() {
+                axios.post('/register/', this.register_form).then(res => {
+                    //验证错误
+                    if (res.code) {
+                        this.$message.error(res.msg)
+                        this.$refs[`register_form_${res.self}`].focus()
                         return
                     }
                     this.$message.success(res.msg)

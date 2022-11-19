@@ -83,7 +83,7 @@ class RegisterForm(forms.Form):
 
 
 def get_index(request):
-    return render(request, "index.html")
+    return render(request, "index.html", {"request": request})
 
 
 def news(request):

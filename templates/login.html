@@ -92,6 +92,10 @@
                         return
                     }
                     this.$message.success(res.msg)
+                    //登录成功1s后跳转回主页
+                    setTimeout(()=>{
+                        location.href='/'
+                    }, 1000)
                 })
             },
             register() {
@@ -103,6 +107,10 @@
                         return
                     }
                     this.$message.success(res.msg)
+                    //注册成功1s后跳转回主页
+                    setTimeout(()=>{
+                        location.href='/'
+                    }, 1000)
                 })
             }
         }

@@ -137,7 +137,7 @@ def register(request):
     if request.method == 'POST':
         res = {
             'code': 1,  # 0表示登录成功
-            'msg': "登录成功!",  # 提示信息
+            'msg': "注册成功!",  # 提示信息
             'self': None  # 提示错误的地方
         }
         form = RegisterForm(request.data, request=request)
@@ -145,6 +145,13 @@ def register(request):
             res['self'], res['msg'] = clean_form(form)
             return JsonResponse(res)
         # 注册成功
+        # 先获取用户名和密码
+        name = request.data.get('name')
+        pwd = request.data.get('pwd')
+        user = UserInfo.objects.create_user(username=name, password=pwd)
+
+        # 注册之后直接登录
+        auth.login(request, user)
         res['code'] = 0
         return JsonResponse(res)
     return render(request, "register.html")

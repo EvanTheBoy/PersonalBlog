@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from django.http import JsonResponse, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
+from django.http import JsonResponse
 from app01.utils.generateCode import generate_random_code
 from django import forms
 from django.contrib import auth
@@ -155,3 +155,8 @@ def register(request):
         res['code'] = 0
         return JsonResponse(res)
     return render(request, "register.html")
+
+
+def logout(request):
+    auth.logout(request)
+    return redirect('/')

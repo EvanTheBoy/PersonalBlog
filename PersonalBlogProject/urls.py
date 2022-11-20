@@ -24,5 +24,6 @@ urlpatterns = [
     path('news/', views.news),
     path('login/', views.login),
     path('register/', views.register),
-    path('login/random_code/', views.get_random_code)
+    path('login/random_code/', views.get_random_code),
+    path('logout/', views.logout)
 ]

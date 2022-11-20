@@ -47,8 +47,19 @@
       width: 40%;
       display: flex;
       justify-content: right; /*让“登录”和“注册”两个按钮往右排*/
+
       img {
         width: 20px;
+        margin-right: 20px;
+        cursor: pointer;
+      }
+
+      .el-dropdown {
+        color: black;
+
+        span {
+          cursor: pointer;
+        }
       }
     }
     a {
@@ -427,6 +438,12 @@
     #unify {
       margin-bottom: 11px;
     }
+  }
+}
+
+.el-dropdown-menu {
+  a {
+    color: #333333;
   }
 }
 

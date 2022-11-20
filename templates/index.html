@@ -6,8 +6,12 @@
     <title>个人博客</title>
     <link rel="stylesheet" href="/static/myFile/css/index.css">
     <link rel="stylesheet" href="/static/myFile/css/reset.css">
+    <!-- import CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <link rel="stylesheet" href="/static/fontawesome-free-6.2.0-web/css/all.min.css">
     <script src="/static/vue/vue.js"></script>
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 </head>
 <body>
 <div id="app">
@@ -31,7 +35,18 @@
             </div>
             <div>
                 {% if request.user.username %}
-                    <a href="">{{ request.user.username }}</a>
+                    <el-dropdown>
+                      <span class="el-dropdown-link">
+                          <a>{{ request.user.username }}</a><i class="el-icon-arrow-down el-icon--right"></i>
+                      </span>
+                      <el-dropdown-menu slot="dropdown">
+                        <el-dropdown-item><a href="">个人中心</a></el-dropdown-item>
+                        <el-dropdown-item><a href="">修改头像</a></el-dropdown-item>
+                        <el-dropdown-item><a href="">发布文章</a></el-dropdown-item>
+                        <el-dropdown-item><a href="">后台管理</a></el-dropdown-item>
+                        <el-dropdown-item><a href="/logout/">退出</a></el-dropdown-item>
+                      </el-dropdown-menu>
+                    </el-dropdown>
                 {% else %}
                     <a href="/login">登录</a>
                     <a href="/register">注册</a>

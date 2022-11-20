@@ -23,7 +23,7 @@
             {% csrf_token %}
                 {% block form %}
                     <input type="text" ref="login_form_name" v-model="login_form.name" placeholder="请输入用户名">
-                    <input type="text" ref="login_form_pwd" v-model="login_form.pwd" placeholder="请输入密码">
+                    <input type="password" ref="login_form_pwd" v-model="login_form.pwd" placeholder="请输入密码">
                     <div class="code">
                         <input type="text" ref="login_form_code" v-model="login_form.code" placeholder="请输入验证码">
                         <img src="/login/random_code" alt="">

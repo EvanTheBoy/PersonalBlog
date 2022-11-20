@@ -45,6 +45,14 @@
 }
 #app nav .right img {
   width: 20px;
+  margin-right: 20px;
+  cursor: pointer;
+}
+#app nav .right .el-dropdown {
+  color: black;
+}
+#app nav .right .el-dropdown span {
+  cursor: pointer;
 }
 #app nav a {
   margin: 20px; /*调整字的间距*/
@@ -365,6 +373,10 @@
 }
 #app footer #unify {
   margin-bottom: 11px;
+}
+
+.el-dropdown-menu a {
+  color: #333333;
 }
 
 /*# sourceMappingURL=index.css.map */

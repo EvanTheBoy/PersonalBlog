@@ -8,8 +8,9 @@ from app01.models import UserInfo
 
 # Create your views here.
 
-# 登录的字段验证
-class LoginForm(forms.Form):
+# 登录注册的父类——自己定义一个
+class BaseForm(forms.Form):
+    # 需要进行验证的三个字段
     name = forms.CharField(error_messages={"required": "请输入用户名"})
     pwd = forms.CharField(error_messages={"required": "请输入密码"})
     code = forms.CharField(error_messages={"required": "请输入验证码"})
@@ -22,6 +23,17 @@ class LoginForm(forms.Form):
         # 让这个方法正常执行
         super().__init__(*args, **kwargs)
 
+    # 定义局部钩子，验证验证码是否正确
+    def clean_code(self):
+        code: str = self.cleaned_data.get('code')
+        valid_code: str = self.request.session.get('valid_code')
+        if code.upper() != valid_code.upper():
+            self.add_error("code", "验证码错误!")
+        return self.cleaned_data
+
+
+# 登录的字段验证
+class LoginForm(BaseForm):
     # 定义全局钩子
     def clean(self):
         name = self.cleaned_data.get('name')
@@ -34,28 +46,13 @@ class LoginForm(forms.Form):
         return self.cleaned_data
 
     # 验证码的验证应该属于另外的方法，因此不应该在全局钩子中编写
-    def clean_code(self):
-        code: str = self.cleaned_data.get('code')
-        valid_code: str = self.request.session.get('valid_code')
-        if code.upper() != valid_code.upper():
-            self.add_error("code", "验证码错误!")
-        return self.cleaned_data
+    # 这部分已进行优化，添加至父类中
 
 
 # 注册的字段验证
-class RegisterForm(forms.Form):
-    name = forms.CharField(error_messages={"required": "请输入用户名"})
-    pwd = forms.CharField(error_messages={"required": "请输入密码"})
+class RegisterForm(BaseForm):
+    # 这里还需要单独验证一个再次输入的密码
     re_pwd = forms.CharField(error_messages={"required": "请再次输入密码"})
-    code = forms.CharField(error_messages={"required": "请输入验证码"})
-
-    # 重写init方法,为了拿request,session里面保存的code.
-    def __init__(self, *args, **kwargs):
-        # 拿到请求对象, 并将其赋给这个类的request
-        self.request = kwargs.pop('request', None)
-
-        # 让这个方法正常执行
-        super().__init__(*args, **kwargs)
 
     # 定义全局钩子，验证两次的密码是否一致
     def clean(self):
@@ -71,14 +68,6 @@ class RegisterForm(forms.Form):
         user_query = UserInfo.objects.filter(username=name)
         if user_query:
             self.add_error("name", "该用户已注册!")
-        return self.cleaned_data
-
-    # 定义局部钩子，验证验证码是否正确
-    def clean_code(self):
-        code: str = self.cleaned_data.get('code')
-        valid_code: str = self.request.session.get('valid_code')
-        if code.upper() != valid_code.upper():
-            self.add_error("code", "验证码错误!")
         return self.cleaned_data
 
 

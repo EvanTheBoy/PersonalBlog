@@ -14,7 +14,7 @@
     <input type="password" v-model="register_form.re_pwd" ref="register_form_re_pwd" placeholder="请再次输入密码" class="register_input">
     <div class="code">
         <input type="text" v-model="register_form.code" ref="register_form_code" placeholder="请输入验证码" class="register_input">
-        <img src="/login/random_code" alt="">
+        <img @click="get_random_code" src="/static/myFile/image/login/code.png" alt="">
     </div>
     <button @click="register">注册</button>
 {% endblock %}

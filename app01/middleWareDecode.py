@@ -7,7 +7,8 @@ from django.utils.deprecation import MiddlewareMixin
 class Md1(MiddlewareMixin):
     # 请求中间件
     def process_request(self, request):
-        if request.method == 'POST':
+        #  并且判断它是json的就去解析，而如果是urlencoding就不解析
+        if request.method == 'POST' and request.META.get('CONTENT-TYPE') == 'application/json':
             data = json.loads(request.body)
             request.data = data
 

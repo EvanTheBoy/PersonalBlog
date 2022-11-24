@@ -5,7 +5,8 @@ from django.views import View
 from django.http import JsonResponse
 
 
-# 在这里存放与登录相关的所有api请求
+# 在这里存放与登录相关的所有ajax请求，原先写的那个只返回页面
+# 新写了页面，那么就要在settings里面注册这个api，然后对应的前端代码的请求地址也都需要修改
 # 登录注册的父类——自己定义一个
 class BaseForm(forms.Form):
     # 需要进行验证的三个字段

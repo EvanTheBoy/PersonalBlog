@@ -1,3 +1,6 @@
+# 这个app的views只返回页面，所有的ajax请求全部放到新创建的那个api的login里去。
+# 其目的就是把跟请求相关的代码从这个视图中分离出去
+
 from django.shortcuts import render, HttpResponse, redirect
 from django.http import JsonResponse
 from app01.utils.generateCode import generate_random_code

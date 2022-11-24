@@ -84,7 +84,7 @@
         },
         methods: {
             login() {
-                axios.post('/login/', this.login_form).then(res => {
+                axios.post('/api/login/', this.login_form).then(res => {
                     //验证错误
                     if (res.code) {
                         this.$message.error(res.msg)
@@ -99,7 +99,7 @@
                 })
             },
             register() {
-                axios.post('/register/', this.register_form).then(res => {
+                axios.post('/api/register/', this.register_form).then(res => {
                     //验证错误
                     if (res.code) {
                         this.$message.error(res.msg)

@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path, include
 
 from app01 import views
 
@@ -25,5 +25,6 @@ urlpatterns = [
     path('login/', views.login),
     path('register/', views.register),
     path('login/random_code/', views.get_random_code),
-    path('logout/', views.logout)
+    path('logout/', views.logout),
+    re_path(r'^api/', include('api.urls'))  # 路由分发，将所有以api开头的请求分发到api的urls.py中
 ]

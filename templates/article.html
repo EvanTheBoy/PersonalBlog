@@ -3,13 +3,13 @@
 
 <!--还有导航栏的样式也要继承-->
 {% block css %}
-
+    <link rel="stylesheet" href="/static/myFile/css/article.css">
 {% endblock %}
 
 <!--主要是继承这个页面-->
 {% block main %}
     <div class="article">
-        <div class="article-title">
+        <div class="article_title">
             <h2>md文档预览</h2>
             <p>
                 <span>发布时间: <i>2022-11-26</i></span>
@@ -23,10 +23,19 @@
             </div>
         </div>
         <div class="article_content">
-
+            md内容
         </div>
         <div class="comment_submit">
-
+            <div class="title">
+                你觉得文章怎么样
+            </div>
+            <div class="body">
+                <textarea name="" id="" rows="10" placeholder="说说你的想法吧!"></textarea>
+            </div>
+            <div class="footer">
+                <p><span>49</span>人参与, <span>3</span>条评论</p>
+                <button class="submit_button">发布评论</button>
+            </div>
         </div>
         <div class="comment_list">
 

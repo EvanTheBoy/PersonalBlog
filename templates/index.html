@@ -4,8 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <title>个人博客</title>
-    <link rel="stylesheet" href="/static/myFile/css/index.css">
     <link rel="stylesheet" href="/static/myFile/css/reset.css">
+
+    <!--抽出公共样式-->
+    <link rel="stylesheet" href="/static/myFile/css/base.css">
+    {% block css %}
+        <link rel="stylesheet" href="/static/myFile/css/index.css">
+    {% endblock %}
+
     <!-- import CSS -->
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <link rel="stylesheet" href="/static/fontawesome-free-6.2.0-web/css/all.min.css">

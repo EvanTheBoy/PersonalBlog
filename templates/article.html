@@ -1,7 +1,35 @@
 <!--需要继承首页-->
 {% extends 'index.html' %}
 
+<!--还有导航栏的样式也要继承-->
+{% block css %}
+
+{% endblock %}
+
 <!--主要是继承这个页面-->
 {% block main %}
+    <div class="article">
+        <div class="article-title">
+            <h2>md文档预览</h2>
+            <p>
+                <span>发布时间: <i>2022-11-26</i></span>
+                <span>作者: <i>Evan</i></span>
+                <span>来源: <i>Evan的个人博客</i></span>
+            </p>
+            <div>
+                <i title="文章标签" class="fas fa-tags"></i>
+                <i>HTML</i>
+                <i>CSS</i>
+            </div>
+        </div>
+        <div class="article_content">
 
+        </div>
+        <div class="comment_submit">
+
+        </div>
+        <div class="comment_list">
+
+        </div>
+    </div>
 {% endblock %}

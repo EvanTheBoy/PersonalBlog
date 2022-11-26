@@ -26,5 +26,6 @@ urlpatterns = [
     path('register/', views.register),
     path('login/random_code/', views.get_random_code),
     path('logout/', views.logout),
+    re_path(r'^article/(?P<nid>\d+)/', views.article),
     re_path(r'^api/', include('api.urls'))  # 路由分发，将所有以api开头的请求分发到api的urls.py中
 ]

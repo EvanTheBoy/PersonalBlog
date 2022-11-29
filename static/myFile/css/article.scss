@@ -117,4 +117,81 @@
       }
     }
   }
+
+  .comment_list {
+    margin-top: 20px;
+
+    ul {
+      list-style: none;
+    }
+
+    > ul {
+      > li {
+        width: 100%;
+        display: flex; //添加流式布局，使得头像与评论区域分为左右两部分
+
+        .left {
+          width: 70px;
+          img {
+            width: 50px;
+            border-radius: 5px;
+          }
+        }
+
+        .right {
+          width: calc(100% - 70px);
+          background-color: white;
+          border-radius: 5px;
+          position: relative;
+          //控制整体向下和向右有一个1px的阴影；模糊程度控制为5px, 颜色选择为黑色, 透明度设置浅一点, 为0.1
+          box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+          //设置padding为：上下为10，左右为20，使得内容与边框隔开一点距离
+          padding: 10px 20px;
+
+          //使用伪元素为评论区域添加对话框的经典小三角形
+          &::after {
+            display: block;
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 15px;
+            width: 0;
+            height: 0;
+            border: 10px solid transparent;
+            border-right-color: white;  //用来控制出现三角形
+          }
+
+          .comment_content {
+            margin: 5px 0;
+
+            img {
+              margin-top: 5px;
+              margin-right: 10px;
+              height: 120px;
+              border-radius: 5px;
+              box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            }
+          }
+
+          .comment_details {
+            display: flex; //添加流式布局
+            justify-content: space-between; //两端对齐
+            font-size: 14px;
+
+            > div > span {
+              cursor: pointer;
+              margin-right: 10px; //三个span标签要隔开一定的距离
+              &:last-child {
+                margin-right: 0; //最后一个不需要隔开距离
+              }
+            }
+
+            .delete {
+              color: red;
+            }
+          }
+        }
+      }
+    }
+  }
 }

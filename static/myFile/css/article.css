@@ -1,5 +1,5 @@
 .article {
-  width: 100%;
+  width: 1200px;
 }
 .article .article_title {
   display: flex;
@@ -109,6 +109,7 @@
 .article .comment_list > ul > li {
   width: 100%;
   display: flex;
+  margin-bottom: 13px;
 }
 .article .comment_list > ul > li .left {
   width: 70px;
@@ -116,6 +117,10 @@
 .article .comment_list > ul > li .left img {
   width: 50px;
   border-radius: 5px;
+  transition: all 0.3s;
+}
+.article .comment_list > ul > li .left img:hover {
+  transform: scale(1.1);
 }
 .article .comment_list > ul > li .right {
   width: calc(100% - 70px);
@@ -158,8 +163,44 @@
 .article .comment_list > ul > li .right .comment_details > div > span:last-child {
   margin-right: 0;
 }
-.article .comment_list > ul > li .right .comment_details .delete {
+.article .comment_list > ul > li .right .delete {
   color: red;
+}
+.article .comment_list > ul > li .right .sub_comment_list {
+  margin-top: 10px;
+}
+.article .comment_list > ul > li .right .sub_comment_list > div {
+  display: flex;
+  margin-bottom: 10px;
+}
+.article .comment_list > ul > li .right .sub_comment_list > div .left {
+  width: 60px;
+}
+.article .comment_list > ul > li .right .sub_comment_list > div .left img {
+  width: 40px;
+  border-radius: 5px;
+  transition: all 0.3s;
+}
+.article .comment_list > ul > li .right .sub_comment_list > div .left img:hover {
+  transform: scale(1.1);
+}
+.article .comment_list > ul > li .right .sub_comment_list > div .right {
+  width: calc(100% - 60px);
+}
+.article .comment_list > ul > li .right .sub_comment_list > div .right .sub_comment_content {
+  margin: 5px 0;
+}
+.article .comment_list > ul > li .right .sub_comment_list > div .right .sub_comment_details {
+  display: flex;
+  font-size: 14px;
+  justify-content: space-between;
+}
+.article .comment_list > ul > li .right .sub_comment_list > div .right .sub_comment_details > div > span {
+  margin-right: 8px;
+  cursor: pointer;
+}
+.article .comment_list > ul > li .right .sub_comment_list > div .right .sub_comment_details > div > span:last-child {
+  margin-right: 0;
 }
 
 /*# sourceMappingURL=article.css.map */

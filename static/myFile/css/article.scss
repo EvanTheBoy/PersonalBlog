@@ -1,5 +1,5 @@
 .article {
-  width: 100%;
+  width: 1200px;
 
   .article_title {
     display: flex;
@@ -129,12 +129,18 @@
       > li {
         width: 100%;
         display: flex; //添加流式布局，使得头像与评论区域分为左右两部分
+        margin-bottom: 13px;
 
         .left {
           width: 70px;
+
           img {
             width: 50px;
             border-radius: 5px;
+            transition: all 0.3s; //让图片大小有一个0.3s的过渡，即慢慢变大
+            &:hover {
+              transform: scale(1.1); //让其大小有一个1.1倍的缩放
+            }
           }
         }
 
@@ -185,9 +191,53 @@
                 margin-right: 0; //最后一个不需要隔开距离
               }
             }
+          }
 
-            .delete {
+          .delete {
               color: red;
+            }
+
+          .sub_comment_list {
+            margin-top: 10px;
+
+            > div {
+              display: flex;
+              margin-bottom: 10px;
+
+              .left {
+                width: 60px;
+
+                img {
+                  width: 40px;
+                  border-radius: 5px;
+                  transition: all 0.3s; //让图片大小有一个0.3s的过渡，即慢慢变大
+                  &:hover {
+                    transform: scale(1.1); //让其大小有一个1.1倍的缩放
+                  }
+                }
+              }
+              .right {
+                width: calc(100% - 60px);
+
+                .sub_comment_content {
+                  margin: 5px 0;
+
+                }
+
+                .sub_comment_details {
+                  display: flex;
+                  font-size: 14px;
+                  justify-content: space-between;
+
+                  > div > span {
+                    margin-right: 8px;
+                    cursor: pointer;
+                    &:last-child {
+                      margin-right: 0;
+                    }
+                  }
+                }
+              }
             }
           }
         }

@@ -24,7 +24,7 @@
 }
 #app .main {
   width: 1200px;
-  height: 700px;
+  min-height: 200px;
   display: flex;
   justify-content: space-between;
 }

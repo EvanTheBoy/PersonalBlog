@@ -63,7 +63,7 @@ header > .slideshow img {
 main {
   width: calc(100% - 240px);
   padding: 20px 120px;
-  height: 1100px;
+  min-height: 600px;
   background-color: var(--main_bg);
   color: var(--main_color);
   display: flex;

@@ -1,9 +1,13 @@
 <!--需要继承首页-->
 {% extends 'index.html' %}
-
+{% load my_tag %} <!--把这个也导入进来，为了下面的banner不报警告，因为不会二次继承-->
 <!--还有导航栏的样式也要继承-->
 {% block css %}
     <link rel="stylesheet" href="/static/myFile/css/article.css">
+{% endblock %}
+
+{% block banner %}
+    {% banner 'index' %}
 {% endblock %}
 
 <!--主要是继承这个页面-->
@@ -44,7 +48,7 @@
                         <img src="/static/myFile/image/avatar/Curry.jpg" alt="">
                     </div>
                     <div class="right">
-                        <h4>Evan</h4>
+                        <h4>Steph Curry</h4>
                         <!--这里需要使用markdown去渲染-->
                         <div class="comment_content">
                             <p>Hello World!</p>
@@ -60,6 +64,111 @@
                                 <span>点赞(0)</span>
                                 <span>回复(0)</span>
                                 <span class="delete">删除</span>
+                            </div>
+                        </div>
+                        <div class="sub_comment_list">
+                            <div class="sub_comment_item">
+                                <div class="left">
+                                    <img src="/static/myFile/image/avatar/dog.png" alt="">
+                                </div>
+                                <div class="right">
+                                    <h4>小李@Steph Curry</h4>
+                                    <div class="sub_comment_content">
+                                        你好
+                                    </div>
+                                    <div class="sub_comment_details">
+                                        <span>1秒前</span>
+                                        <div>
+                                            <span>点赞 (1)</span>
+                                            <span>回复</span>
+                                            <span class="delete">删除</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sub_comment_item">
+                                <div class="left">
+                                    <img src="/static/myFile/image/avatar/dog.png" alt="">
+                                </div>
+                                <div class="right">
+                                    <h4>小李@Steph Curry</h4>
+                                    <div class="sub_comment_content">
+                                        你好
+                                    </div>
+                                    <div class="sub_comment_details">
+                                        <span>1秒前</span>
+                                        <div>
+                                            <span>点赞 (1)</span>
+                                            <span>回复</span>
+                                            <span class="delete">删除</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="left">
+                        <img src="/static/myFile/image/avatar/Curry.jpg" alt="">
+                    </div>
+                    <div class="right">
+                        <h4>Steph Curry</h4>
+                        <!--这里需要使用markdown去渲染-->
+                        <div class="comment_content">
+                            <p>Hello World!</p>
+                            <div>
+                                <img src="/static/myFile/image/comment/comments.png" alt="">
+                                <img src="/static/myFile/image/comment/comments.png" alt="">
+                                <img src="/static/myFile/image/comment/comments.png" alt="">
+                            </div>
+                        </div>
+                        <div class="comment_details">
+                            <span>刚刚</span>
+                            <div>
+                                <span>点赞(0)</span>
+                                <span>回复(0)</span>
+                                <span class="delete">删除</span>
+                            </div>
+                        </div>
+                        <div class="sub_comment_list">
+                            <div class="sub_comment_item">
+                                <div class="left">
+                                    <img src="/static/myFile/image/avatar/dog.png" alt="">
+                                </div>
+                                <div class="right">
+                                    <h4>小李@Steph Curry</h4>
+                                    <div class="sub_comment_content">
+                                        你好
+                                    </div>
+                                    <div class="sub_comment_details">
+                                        <span>1秒前</span>
+                                        <div>
+                                            <span>点赞 (1)</span>
+                                            <span>回复</span>
+                                            <span class="delete">删除</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sub_comment_item">
+                                <div class="left">
+                                    <img src="/static/myFile/image/avatar/dog.png" alt="">
+                                </div>
+                                <div class="right">
+                                    <h4>小李@Steph Curry</h4>
+                                    <div class="sub_comment_content">
+                                        你好
+                                    </div>
+                                    <div class="sub_comment_details">
+                                        <span>1秒前</span>
+                                        <div>
+                                            <span>点赞 (1)</span>
+                                            <span>回复</span>
+                                            <span class="delete">删除</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

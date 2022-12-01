@@ -45,4 +45,4 @@ def logout(request):
 
 # 该方法返回文章详情页面，nid即文章的id号，表示该文章是第几篇文章
 def article(request, nid):
-    return render(request, 'article.html')
+    return render(request, 'article.html', locals())  # locals()方法表示把所有的东西都传给前端，不需要单独写{"nid": nid}了

@@ -14,11 +14,11 @@
 {% block main %}
     <div class="article">
         <div class="article_title">
-            <h2>md文档预览</h2>
+            <h2>{{ passage.title }}</h2>
             <p>
-                <span>发布时间: <i>2022-11-26</i></span>
-                <span>作者: <i>Evan</i></span>
-                <span>来源: <i>Evan的个人博客</i></span>
+                <span>发布时间: <i>{{ passage.create_date|date:'Y-m-d' }}</i></span>  <!--date后面那种写法是为了指定日期的格式-->
+                <span>作者: <i>{{ passage.author }}</i></span>
+                <span>来源: <i>{{ passage.source }}</i></span>
             </p>
             <div>
                 <i title="文章标签" class="fas fa-tags"></i>

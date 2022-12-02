@@ -7,6 +7,7 @@ from app01.utils.generateCode import generate_random_code
 
 from django.contrib import auth
 from app01.models import UserInfo
+from app01.models import Articles
 
 
 # Create your views here.
@@ -45,4 +46,10 @@ def logout(request):
 
 # 该方法返回文章详情页面，nid即文章的id号，表示该文章是第几篇文章
 def article(request, nid):
+    # 根据下面这个方法，依靠文章的id查询具体的文章
+    article_query = Articles.objects.filter(nid=nid)
+    if not article_query:
+        # 若找不到，直接重定向回首页
+        return redirect("/")
+    passage = article_query.first()
     return render(request, 'article.html', locals())  # locals()方法表示把所有的东西都传给前端，不需要单独写{"nid": nid}了

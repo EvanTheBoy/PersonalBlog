@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block banner %}
-    {% banner 'article' nid %}
+    {% banner 'article' passage %}
 {% endblock %}
 
 <!--主要是继承这个页面-->
@@ -22,8 +22,9 @@
             </p>
             <div>
                 <i title="文章标签" class="fas fa-tags"></i>
-                <i>HTML</i>
-                <i>CSS</i>
+                {% for tag in passage.tag.all %}
+                    <i>{{ tag.title }}</i>
+                {% endfor %}
             </div>
         </div>
         <div class="article_content">

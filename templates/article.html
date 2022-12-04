@@ -3,6 +3,7 @@
 {% load my_tag %} <!--把这个也导入进来，为了下面的banner不报警告，因为不会二次继承-->
 <!--还有导航栏的样式也要继承-->
 {% block css %}
+    <link rel="stylesheet" href="/static/editor-md/css/editormd.css">
     <link rel="stylesheet" href="/static/myFile/css/article.css">
 {% endblock %}
 
@@ -27,8 +28,8 @@
                 {% endfor %}
             </div>
         </div>
-        <div class="article_content">
-            md内容
+        <div class="article_content" id="test-editor">
+            <textarea style="display: none;">{{ passage.content }}</textarea>
         </div>
         <div class="comment_submit">
             <div class="title">
@@ -177,4 +178,20 @@
             </ul>
         </div>
     </div>
+{% endblock %}
+
+{% block js %}
+    <script src="/static/editor-md/lib/marked.min.js"></script>
+    <script src="/static/editor-md/lib/prettify.min.js"></script>
+    <script src="/static/jquery/jquery.min.js"></script>
+    <script src="/static/editor-md/editormd.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            let editor = editormd.markdownToHTML("test-editor", {
+                width: "100%",
+                height: "100%",
+                path: "/static/editor-md/lib/"
+            });
+        });
+    </script>
 {% endblock %}

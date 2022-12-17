@@ -53,3 +53,7 @@ def article(request, nid):
         return redirect("/")
     passage = article_query.first()
     return render(request, 'article.html', locals())  # locals()方法表示把所有的东西都传给前端，不需要单独写{"nid": nid}了
+
+
+def backend(request):
+    return render(request, 'backend/backend.html')

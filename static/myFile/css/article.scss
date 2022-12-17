@@ -39,14 +39,14 @@
     }
   }
 
-  .article_content {
+  .article_content {   //文章主体内容
     margin-top: 1px;
     min-height: 200px;
     background-color: white;
     width: calc(100% - 40px);
   }
 
-  .comment_submit {
+  .comment_submit {  //文章底下的评论的提交
     margin-top: 20px;
     min-height: 200px;
     background-color: white;
@@ -125,7 +125,7 @@
     }
   }
 
-  .comment_list {
+  .comment_list {  //评论页面
     margin-top: 20px;
 
     ul {
@@ -252,7 +252,7 @@
     }
   }
 
-  .slider_bar {
+  .slider_bar {  //悬浮目录
     width: 210px;
     position: absolute;
     top: 0;

@@ -1,0 +1,23 @@
+body {
+  display: flex;
+}
+
+aside {
+  width: 230px;
+  height: 100vh;
+  background-color: #26c6da;
+
+  .slogan {
+    width: 100%;
+
+    img {
+      width: 100%;
+    }
+  }
+}
+
+main {
+  width: calc(100% - 230px);
+  height: 100vh;
+  background-color: #e4ab0d;
+}

@@ -170,7 +170,7 @@
   position: absolute;
   right: 0;
   bottom: 0;
-  background-color: #26c6da;
+  background-color: #4169E1;
   border: none;
   color: white;
   display: flex;
@@ -178,6 +178,10 @@
   justify-content: center;
   border-radius: 5px;
   cursor: pointer;
+  transition: all 0.3s;
+}
+#app .main .left .blog_article > .body > ul > li .right > a:hover {
+  background-color: #1E90FF;
 }
 #app .main .right {
   width: 30%;

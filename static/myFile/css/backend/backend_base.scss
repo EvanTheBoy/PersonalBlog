@@ -1,17 +1,44 @@
-body {
+#app {
   display: flex;
 }
 
 aside {
   width: 230px;
   height: 100vh;
-  background-color: #26c6da;
+  background-color: #304156;
 
   .slogan {
+    margin-top: 20px;
     width: 100%;
+    display: flex;
+    justify-content: center;
 
     img {
+      width: 80%;
+    }
+  }
+
+  > ul {
+    width: 100%;
+    margin-top: 30px;
+
+    > li {
       width: 100%;
+      height: 40px;
+      justify-content: center;
+      display: flex;
+      align-items: center;
+      transition: all 0.3s;
+
+      a {
+        color: white;
+      }
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.2);
+        -webkit-box-shadow: #304162 0 10px 10px;
+        -moz-box-shadow: #304162 0 10px 10px;
+        box-shadow: #304162 0 10px 10px;
+      }
     }
   }
 }
@@ -19,5 +46,5 @@ aside {
 main {
   width: calc(100% - 230px);
   height: 100vh;
-  background-color: #e4ab0d;
+  background-color: #f0eeee;
 }

@@ -167,6 +167,8 @@ class Comment(models.Model):
     drawing = models.TextField(verbose_name='配图', null=True, blank=True)
     create_time = models.DateTimeField(verbose_name='创建时间', auto_now_add=True)
     parent_comment = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE, verbose_name='是否是父评论')
+    # 以上，要建立一个递归的关系，就是一个对象和自身有多对一的关系
+    # on_delete表示父评论被删除后，子评论也被跟着删除
 
     def __str__(self):
         return self.content

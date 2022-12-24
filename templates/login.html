@@ -23,6 +23,8 @@
             {% csrf_token %}
                 {% block form %}
                     <input type="text" ref="login_form_name" v-model="login_form.name" placeholder="请输入用户名">
+                    <!--这里写v-model指令是为了实现表单中数据与data，就是下面vue代码中的数据的双向绑定-->
+                    <!--意思就是下面是什么，这里就是什么，没有写死，二者中的一个变了，另一个也跟着变-->
                     <input type="password" ref="login_form_pwd" v-model="login_form.pwd" placeholder="请输入密码">
                     <div class="code">
                         <input type="text" ref="login_form_code" v-model="login_form.code" placeholder="请输入验证码">
@@ -115,6 +117,8 @@
                     //验证错误
                     if (res.code) {
                         this.$message.error(res.msg)
+                        //以下代码为：当某个地方输入错误时，获取焦点，以提示用户重新输入
+                        //下面这种写法的实现前提就是在html代码中要绑定ref
                         this.$refs[`register_form_${res.self}`].focus()
                         return
                     }

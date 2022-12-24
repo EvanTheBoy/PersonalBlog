@@ -77,6 +77,7 @@ def clean_form(form):
     # 拿到所有错误字段的名字，比如name, pwd这些。通过取得字典的key值可以拿到它们
     err_valid = list(err_dict.keys())[0]
     # 拿到第一个字段的错误信息,比如“请输入用户名”这样的信息
+    # 这里的第一个，指的是有错误的第一个
     err_msg = err_dict[err_valid][0]
     return err_valid, err_msg
 

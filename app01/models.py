@@ -27,7 +27,7 @@ class UserInfo(AbstractUser):
     collects：收藏的文章
     navs:用户收藏的网站
     """
-    nid = models.AutoField(primary_key=True)
+    nid = models.AutoField(primary_key=True)  # 以下，null=True表示数据库中控制存储为null;blank=True表示允许字段为空
     nick_name = models.CharField(max_length=16, verbose_name='昵称', null=True, blank=True)
     avatar_url = models.URLField(verbose_name='用户头像', help_text='可能是其他平台的头像', null=True, blank=True)
     tel = models.CharField(verbose_name='手机号', max_length=12, null=True, blank=True)
@@ -49,7 +49,7 @@ class UserInfo(AbstractUser):
         (2, '账号被封禁'),
     )
     account_status = models.IntegerField(default=0, choices=account_status_choice, verbose_name='账号状态')
-    avatar = models.ForeignKey(
+    avatar = models.ForeignKey(  # 本身是多对一关系，即用户是多，头像是1.因为一个头像可以被很多用户使用，而用户无法同时使用很多头像
         to='Avatars',
         to_field='nid',
         on_delete=models.SET_NULL,
@@ -57,7 +57,7 @@ class UserInfo(AbstractUser):
         null=True,
         blank=True,
     )
-    collects = models.ManyToManyField(
+    collects = models.ManyToManyField(  # 多对多的关系，有很多用户，每个用户都可收藏很多文章
         to='Articles',
         verbose_name='收藏的文章',
         blank=True

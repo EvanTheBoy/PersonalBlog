@@ -75,6 +75,7 @@ WSGI_APPLICATION = "PersonalBlogProject.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+# 配置settings,连接到本地数据库。这个必须要写！
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",

@@ -86,6 +86,7 @@
             login() {
                 axios.post('/api/login/', this.login_form).then(res => {
                     //验证错误
+                    //res就是从客户端获取的全部数据，要获取具体项的话，直接.就可以了
                     if (res.code) {
                         this.$message.error(res.msg)
                         this.$refs[`login_form_${res.self}`].focus()

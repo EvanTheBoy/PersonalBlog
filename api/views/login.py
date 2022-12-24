@@ -111,6 +111,7 @@ class RegisterView(View):
             'msg': "注册成功!",  # 提示信息
             'self': None  # 提示错误的地方
         }
+        # 以下，可直接使用request.data，因为在中间件中request.data已经被赋值了
         form = RegisterForm(request.data, request=request)
         if not form.is_valid():
             res['self'], res['msg'] = clean_form(form)

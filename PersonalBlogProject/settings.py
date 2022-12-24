@@ -44,11 +44,11 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
-    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",  # Django自带的安全验证机制
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "app01.middleWareDecode.Md1"
+    "app01.middleWareDecode.Md1"  # 自己定义了一个处理的中间件，必须要在这里注册一下
 ]
 
 ROOT_URLCONF = "PersonalBlogProject.urls"

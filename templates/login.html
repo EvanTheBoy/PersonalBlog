@@ -54,18 +54,29 @@
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 <script>
     //请求中间件
+    //为什么需要这些？因为用户输入用户名、密码那些后要登录，会被拦截，这是Django自带安全验证机制
+    //捣的鬼。所以必须给input的那些加一个随机字符串，这个可以在前端用F12查出来，加上后，才能顺利
+    //到后端，然后被处理。以下并不是真的发请求，而是在发送前，先对数据做处理
+    //这是Django自带的安全验证机制，每次加一个随机字符串，表示这是安全的，那么post请求
+    //就可以通行，否则post请求会被拦截。因为不想在每一个方法里面都这么写（太麻烦了），所以抽出来
+    //单独写在这
     axios.interceptors.request.use(request => {
         if (request.method === 'post') {
             let csrf_token = document.querySelector('input[name="csrfmiddlewaretoken"]').value
+            //加上一个请求头
             request.headers['X-CSRFToken'] = csrf_token
         }
         return request
     })
 
     //响应中间件
+    //为了获取数据的方便。否则光有请求中间件，每次请求数据时都要res.data.name啥的
+    //这里直接给它
     axios.interceptors.response.use(response => {
         return response.data
     })
+
+    //以上两个其实都会拦截请求，记得每次拦截后，一定要return出去，否则后面的就拿不到了
 
     new Vue({
         el:'#app',
@@ -86,7 +97,7 @@
             login() {
                 axios.post('/api/login/', this.login_form).then(res => {
                     //验证错误
-                    //res就是从客户端获取的全部数据，要获取具体项的话，直接.就可以了
+                    //res就是从客户端获取的全部数据，要获取具体项的话，直接“.成员”就可以了
                     if (res.code) {
                         this.$message.error(res.msg)
                         this.$refs[`login_form_${res.self}`].focus()

@@ -81,6 +81,7 @@ def clean_form(form):
     return err_valid, err_msg
 
 
+# 用户成功登录
 class LoginView(View):
     def post(self, request):
         res = {
@@ -102,6 +103,7 @@ class LoginView(View):
         return JsonResponse(res)
 
 
+# 成功注册
 class RegisterView(View):
     def post(self, request):
         res = {

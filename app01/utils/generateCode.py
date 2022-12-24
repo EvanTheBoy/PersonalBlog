@@ -31,6 +31,7 @@ def generate_random_code(size=(200, 50), length=4, point_num=80, line_num=8):
         valid_code += random_char
         draw.text((40 * i + 29, 0), random_char, (0, 0, 0), font=font)
 
+    # 这个就是生成的验证码
     print(valid_code)
 
     # 随机生成点

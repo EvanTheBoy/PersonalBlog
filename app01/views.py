@@ -29,8 +29,9 @@ def login(request):
 # 最终给到前端
 # 前端确实可以拿到code，但是后端怎么知道正不正确呢？把验证码放到每个人都有的那个地方就可以了，就是session
 def get_random_code(request):
+    # 调用下面这个函数，就得到了验证码存储在计算机中的信息和人眼中的信息
     data, valid_code = generate_random_code()
-    # 将验证码写入session
+    # 将验证码写入session，这是为了保证每个人拿到的都不一样
     request.session['valid_code'] = valid_code
     return HttpResponse(data)
 

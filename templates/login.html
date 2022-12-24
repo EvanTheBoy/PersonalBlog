@@ -127,6 +127,7 @@
             },
             get_random_code(e) {
                 let time = new Date().getTime()
+                //这里是一个请求路径，在urls.py配置的路由里面
                 e.target.src = '/login/random_code/?timestamp=' + time
             }
         }

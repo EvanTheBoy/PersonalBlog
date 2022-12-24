@@ -16,7 +16,6 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -27,7 +26,6 @@ SECRET_KEY = "django-insecure--af_-ms)ez2e#2^0tny5!p-_lydrp_uy_m3ibgd&y%ruv0$kuk
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -74,21 +72,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "PersonalBlogProject.wsgi.application"
 
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "personal_blog",
-        "USER": "root",
-        "PASSWORD": "xhw200116long3",
-        "HOST": "127.0.0.1",
-        "PORT": 3306
+        "NAME": "personal_blog",  # 数据库名称
+        "USER": "root",  # 用户名
+        "PASSWORD": "xhw200116long3",  # 密码
+        "HOST": "127.0.0.1",  # 地址
+        "PORT": 3306  # 端口号
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -108,7 +104,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -119,7 +114,6 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
@@ -138,6 +132,6 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-
 # 自己扩展第三张表
+# 必须添加此配置，这样才能用AbstractUser的引用
 AUTH_USER_MODEL = "app01.UserInfo"

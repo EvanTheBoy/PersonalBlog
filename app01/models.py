@@ -380,6 +380,7 @@ class MenuImg(models.Model):
         return str(self.url)
 
     class Meta:
+        # 指定显示中文的表明，这里是复数形式，其他的与这相同
         verbose_name_plural = '站点背景图'
 
 

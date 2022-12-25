@@ -166,7 +166,9 @@ class Comment(models.Model):
     comment_count = models.IntegerField(verbose_name='子评论数', default=0)
     drawing = models.TextField(verbose_name='配图', null=True, blank=True)
     create_time = models.DateTimeField(verbose_name='创建时间', auto_now_add=True)
-    parent_comment = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE, verbose_name='是否是父评论')
+    parent_comment = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE,
+                                       verbose_name='是否是父评论')
+
     # 以上，要建立一个递归的关系，就是一个对象和自身有多对一的关系
     # on_delete表示父评论被删除后，子评论也被跟着删除
 
@@ -387,7 +389,8 @@ class Advert(models.Model):
     title = models.CharField(verbose_name='产品名称', max_length=32, null=True)
     href = models.URLField(verbose_name='跳转链接')
     img = models.FileField(verbose_name='图片地址', null=True, blank=True, help_text='单图', upload_to='advert/')
-    img_list = models.TextField(verbose_name='图片组', null=True, blank=True, help_text='上传图片请用线上地址，使用;隔开多张图片')
+    img_list = models.TextField(verbose_name='图片组', null=True, blank=True,
+                                help_text='上传图片请用线上地址，使用;隔开多张图片')
     is_show = models.BooleanField(verbose_name='是否展示', default=False)
     author = models.CharField(verbose_name='广告主', max_length=32, null=True, blank=True)
     abstract = models.CharField(verbose_name='产品简介', max_length=128, null=True, blank=True)

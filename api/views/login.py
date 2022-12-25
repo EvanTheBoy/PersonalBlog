@@ -5,18 +5,25 @@ from django.views import View
 from django.http import JsonResponse
 
 
+# 数据库中很多具有多对多关系的表均由auth自动创建，auth是Django提供的权限管理系统
+# 它可以和admin模块一起使用创建小型项目
+
 # 在这里存放与登录相关的所有ajax请求，原先写的那个只返回页面
 # 新写了页面，那么就要在settings里面注册这个api，然后对应的前端代码的请求地址也都需要修改
 # 登录注册的父类——自己定义一个
 class BaseForm(forms.Form):
     # 需要进行验证的三个字段
+    # 这里要先定义，在后面的cleaned_data处时才能拿到
     name = forms.CharField(error_messages={"required": "请输入用户名"})
     pwd = forms.CharField(error_messages={"required": "请输入密码"})
     code = forms.CharField(error_messages={"required": "请输入验证码"})
 
     # 重写init方法,为了拿request,session里面保存的code.
+    # 否则光有form表单，拿不到session中的code
+    # 从form表单这里拿到的是用户输入的，而session中的是系统给用户生成的
     def __init__(self, *args, **kwargs):
-        # 拿到请求对象, 并将其赋给这个类的request
+        # 拿到请求对象, 并将其赋给self的request
+        # 之所以这么干，是因为我希望在clean_code中拿到request
         self.request = kwargs.pop('request', None)
 
         # 让这个方法正常执行
@@ -25,6 +32,7 @@ class BaseForm(forms.Form):
     # 定义局部钩子，验证验证码是否正确
     def clean_code(self):
         code: str = self.cleaned_data.get('code')
+        # cleaned_data就是钩子的self自带的成员变量，通过这个我们可以拿到想要的数据
         valid_code: str = self.request.session.get('valid_code')
         if code.upper() != valid_code.upper():
             self.add_error("code", "验证码错误!")
@@ -35,12 +43,16 @@ class BaseForm(forms.Form):
 class LoginForm(BaseForm):
     # 定义全局钩子
     def clean(self):
+        # 全局钩子的命名规则就是cleaned_'自己命的名'，这样的方式命名
         name = self.cleaned_data.get('name')
         pwd = self.cleaned_data.get('pwd')
-        # 为字段添加错误信息
+        # 这个方法就是用来验证登录信息是否正确的，当然是从数据库中取数据
         user = auth.authenticate(username=name, password=pwd)
         if not user:
+            # 为字段添加错误信息
             self.add_error("pwd", "用户名或密码错误!")
+        # cleaned_data本质上是一个字典。能走到这一步说明拿到了正确的user对象
+        # 因此直接给它添加一个user的键值对
         self.cleaned_data['user'] = user
         return self.cleaned_data
 
@@ -121,6 +133,7 @@ class RegisterView(View):
         # 先获取用户名和密码
         name = request.data.get('name')
         pwd = request.data.get('pwd')
+        # 这里使用的仍然是auth模块
         user = UserInfo.objects.create_user(username=name, password=pwd)
 
         # 注册之后直接登录

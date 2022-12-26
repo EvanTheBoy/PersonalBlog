@@ -27,7 +27,7 @@ class UserInfo(AbstractUser):
     collects：收藏的文章
     navs:用户收藏的网站
     """
-    nid = models.AutoField(primary_key=True)  # 以下，null=True表示数据库中控制存储为null;blank=True表示允许字段为空
+    nid = models.AutoField(primary_key=True)  # 以下，null=True表示数据库中空值存储为null;blank=True表示允许字段为空
     nick_name = models.CharField(max_length=16, verbose_name='昵称', null=True, blank=True)
     avatar_url = models.URLField(verbose_name='用户头像', help_text='可能是其他平台的头像', null=True, blank=True)
     tel = models.CharField(verbose_name='手机号', max_length=12, null=True, blank=True)

@@ -57,4 +57,6 @@ def article(request, nid):
 
 
 def backend(request):
+    if not request.user.username:
+        return redirect("/")
     return render(request, 'backend/backend.html')

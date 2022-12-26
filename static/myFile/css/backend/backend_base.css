@@ -39,9 +39,87 @@ aside > ul > li:hover {
 }
 
 main {
+  padding: 20px;
+  box-sizing: border-box;
   width: calc(100% - 230px);
   height: 100vh;
   background-color: #f0eeee;
+}
+main .user_info {
+  width: 100%;
+  display: flex;
+  background-color: #CFCFCF;
+  border-radius: 5px;
+}
+main .user_info .left {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+main .user_info .left img {
+  width: 83px;
+  border-radius: 50%;
+}
+main .user_info .right {
+  width: 50%;
+  display: flex;
+  flex-wrap: wrap;
+}
+main .user_info .right .item {
+  width: 50%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+main .actions {
+  width: 100%;
+  height: 60px;
+  border-radius: 5px;
+  margin-top: 20px;
+  background-color: #CFCFCF;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+main .article_collection {
+  border-radius: 5px;
+  margin-top: 20px;
+  background-color: #CFCFCF;
+}
+main .article_collection p {
+  text-align: center;
+  padding-top: 10px;
+  font-size: 18px;
+}
+main .article_collection .article_list {
+  margin-top: 10px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+main .article_collection .article_list .item {
+  box-sizing: border-box;
+  width: 33.33%;
+  display: flex;
+  padding: 20px;
+}
+main .article_collection .article_list .item .left {
+  width: 30%;
+}
+main .article_collection .article_list .item .left img {
+  width: 100%;
+}
+main .article_collection .article_list .item .right {
+  width: 70%;
+  box-sizing: border-box;
+  padding-left: 10px;
+}
+main .article_collection .article_list .item .right p {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 /*# sourceMappingURL=backend_base.css.map */

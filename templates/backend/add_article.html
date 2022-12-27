@@ -17,26 +17,62 @@
       <div class="add_content">
           <el-collapse v-model="add_article_activeNames">
               <el-collapse-item title="标题" name="1">
-                  <input type="text" placeholder="请输入文章标题">
+                  <el-input placeholder="请输入文章标题" v-model="input_title"></el-input>
               </el-collapse-item>
               <el-collapse-item title="分类与标签" name="2">
-                  <el-select v-model="value" placeholder="请选择文章分类">
-                    <el-option
-                      v-for="item in category_options"
-                      :key="item.value"
-                      :label="item.label"
-                      :value="item.value">
-                    </el-option>
+                  <el-select v-model="category_id" placeholder="请选择文章分类">
+                      <el-option
+                              v-for="item in category_options"
+                              :key="item.value"
+                              :label="item.label"
+                              :value="item.value">
+                      </el-option>
+                  </el-select>
+                  <el-select
+                          v-model="tags"
+                          multiple
+                          collapse-tags
+                          style="margin-left: 20px;"
+                          placeholder="请选择文章标签">
+                      <el-option
+                              v-for="item in tag_options"
+                              :key="item.value"
+                              :label="item.label"
+                              :value="item.value">
+                      </el-option>
                   </el-select>
               </el-collapse-item>
               <el-collapse-item title="封面" name="3">
-                <div>Simplify the process: keep operating process simple and intuitive;</div>
-                <div>Definite and clear: enunciate your intentions clearly so that the users can quickly understand and make decisions;</div>
-                <div>Easy to identify: the interface should be straightforward, which helps the users to identify and frees them from memorizing and recalling.</div>
+                  <div class="left">
+                      <img src="/static/myFile/image/article/pic6.jpg" alt="">
+                  </div>
+                  <div class="right">
+                      <el-select v-model="cover_id" placeholder="请选择封面">
+                          <el-option
+                                  v-for="item in cover_options"
+                                  :key="item.value"
+                                  :label="item.label"
+                                  :value="item.value">
+                          </el-option>
+                      </el-select>
+                  </div>
               </el-collapse-item>
               <el-collapse-item title="可选设置" name="4">
-                <div>Decision making: giving advices about operations is acceptable, but do not make decisions for the users;</div>
-                <div>Controlled consequences: users should be granted the freedom to operate, including canceling, aborting or terminating current operation.</div>
+                  <el-switch
+                          style="display: block"
+                          v-model="recommend"
+                          active-color="#13ce66"
+                          inactive-color="#ff4949"
+                          active-text="推荐此文章"
+                          inactive-text="不推荐此文章">
+                  </el-switch>
+                  <el-switch
+                          v-model="pwd_active"
+                          active-text="加密"
+                          inactive-text="不加密">
+                  </el-switch>
+                  <el-input v-show="pwd_active" v-model="pwd" placeholder="请输入加密密码"></el-input>
+                  <!--以上，v-show就是表示若不加密，密码输入框默认不显示；只有当选择让其加密时，才显示-->
               </el-collapse-item>
           </el-collapse>
       </div>

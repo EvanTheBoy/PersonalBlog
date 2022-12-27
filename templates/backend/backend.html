@@ -148,12 +148,34 @@
     new Vue({
         el: '#app',
         data: {
-            add_drawer:false,
-            add_article_activeNames:["1"],
-            category_options:[
-                {value:'0', label:'前端'},
-                {value:'1', label:'后端'},
-                {value:'2', label:'项目相关'}
+            add_drawer:false,  //是否展开添加文章的侧边栏
+            add_article_activeNames:["1"], //选中的文章id
+            input_title: '', //输入的文章标题
+            category_id: '', //文章分类的id
+            category_options:[  //选择框中可选择的对象
+                {value: 0, label:'前端'},
+                {value: 1, label:'后端'},
+                {value: 2, label:'项目相关'}
+            ],
+            tags:[], //双向绑定的标签
+            tag_options:[ //标签的下拉框选择
+                {value: 0, label:'python'},
+                {value: 1, label:'java'},
+                {value: 2, label:'Django'},
+                {value: 3, label:'Spring'},
+                {value: 4, label:'php'},
+                {value: 5, label:'vue'},
+            ],
+            recommend: true, //是否上推荐
+            pwd_active: false, //是否加密，默认不加密
+            pwd: '', //若加密，需要输的密码
+            cover_id: '', //封面的id
+            cover_options: [ //封面的下拉框选择
+                {value: 0, label:'/static/myFile/image/article/pic15.png'},
+                {value: 1, label:'/static/myFile/image/article/pic16.png'},
+                {value: 2, label:'/static/myFile/image/article/pic17.png'},
+                {value: 3, label:'/static/myFile/image/article/pic18.jpg'},
+                {value: 4, label:'/static/myFile/image/article/pic19.jpg'},
             ]
         },
         methods: {
@@ -166,7 +188,6 @@
                     })
                     .catch(_ => {});
             },
-
         }
     })
 </script>

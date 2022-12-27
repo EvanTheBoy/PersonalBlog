@@ -14,6 +14,7 @@ from app01.models import Articles
 
 
 def get_index(request):
+    # 以下render函数的第三个参数，就保证了request可以在前端页面中被用到
     return render(request, "index.html", {"request": request})
 
 
@@ -60,3 +61,7 @@ def backend(request):
     if not request.user.username:
         return redirect("/")
     return render(request, 'backend/backend.html')
+
+
+def add_article(request):
+    return render(request, 'backend/add_article.html')

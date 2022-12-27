@@ -94,7 +94,8 @@
     <!--以下是textarea区域的配置内容-->
     <script>
         $(function () {
-            editormd("editor", {
+            //定义一个editor变量，然后在backend的data里面通过query的函数获取其中的值
+            var editor = editormd("editor", {
                 width:"100%",
                 height:"850",
                 path:"/static/editor-md/lib/",

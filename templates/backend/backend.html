@@ -186,7 +186,17 @@
             },
             //添加文章的函数
             add_article() {
-
+                //把用户给文章添加的内容整合进这个data对象里
+                let data = {
+                    title: this.input_title,
+                    cover_id: this.cover_id,
+                    recommend: this.recommend,
+                    pwd: this.pwd,
+                    tags: this.tags,
+                    category_id: this.category_id,
+                    content: editor.querySelector('.editormd-markdown-textarea').value
+                }
+                console.log(data)
             }
         }
     })

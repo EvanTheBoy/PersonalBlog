@@ -7,8 +7,40 @@
 
 {% block main %}
     <div class="add_article_actions">
-        <el-button type="primary">完善文章信息</el-button>
+        <el-button type="primary" @click="add_drawer=true">完善文章信息</el-button>
     </div>
+    <el-drawer
+      title="添加文章"
+      :visible.sync="add_drawer"
+      direction="rtl"
+      :before-close="add_handleClose">
+      <div class="add_content">
+          <el-collapse v-model="add_article_activeNames">
+              <el-collapse-item title="标题" name="1">
+                  <input type="text" placeholder="请输入文章标题">
+              </el-collapse-item>
+              <el-collapse-item title="分类与标签" name="2">
+                  <el-select v-model="value" placeholder="请选择文章分类">
+                    <el-option
+                      v-for="item in category_options"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value">
+                    </el-option>
+                  </el-select>
+              </el-collapse-item>
+              <el-collapse-item title="封面" name="3">
+                <div>Simplify the process: keep operating process simple and intuitive;</div>
+                <div>Definite and clear: enunciate your intentions clearly so that the users can quickly understand and make decisions;</div>
+                <div>Easy to identify: the interface should be straightforward, which helps the users to identify and frees them from memorizing and recalling.</div>
+              </el-collapse-item>
+              <el-collapse-item title="可选设置" name="4">
+                <div>Decision making: giving advices about operations is acceptable, but do not make decisions for the users;</div>
+                <div>Controlled consequences: users should be granted the freedom to operate, including canceling, aborting or terminating current operation.</div>
+              </el-collapse-item>
+          </el-collapse>
+      </div>
+    </el-drawer>
     <div id="editor">
         <textarea style="display: none;"></textarea>
     </div>
@@ -24,8 +56,8 @@
         $(function () {
             editormd("editor", {
                 width:"100%",
-                height:"700",
-                path:"/static/editor-md/lib"
+                height:"850",
+                path:"/static/editor-md/lib/",
             });
         });
     </script>

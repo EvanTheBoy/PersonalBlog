@@ -30,7 +30,7 @@
                 <a href="/backend/reset_password/">修改密码</a>
             </li>
             <li>
-                <a href="/backend/add_article/">修改密码</a>
+                <a href="/backend/add_article/">个人设置</a>
             </li>
         </ul>
     </aside>
@@ -147,6 +147,27 @@
 <script>
     new Vue({
         el: '#app',
+        data: {
+            add_drawer:false,
+            add_article_activeNames:["1"],
+            category_options:[
+                {value:'0', label:'前端'},
+                {value:'1', label:'后端'},
+                {value:'2', label:'项目相关'}
+            ]
+        },
+        methods: {
+            //下面这个函数直接从官网复制即可
+            //链接:https://element.eleme.cn/#/en-US/component/drawer
+            add_handleClose(done) {
+                this.$confirm('Are you sure you want to close this?')
+                    .then(_ => {
+                        done();
+                    })
+                    .catch(_ => {});
+            },
+
+        }
     })
 </script>
 </body>

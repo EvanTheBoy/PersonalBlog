@@ -1,6 +1,7 @@
 {% extends 'backend/backend.html' %}
 
 {% block css %}
+    <link rel="stylesheet" href="/static/editor-md/css/editormd.css">
     <link rel="stylesheet" href="/static/myFile/css/backend/add_article.css">
 {% endblock %}
 
@@ -8,7 +9,24 @@
     <div class="add_article_actions">
         <el-button type="primary">完善文章信息</el-button>
     </div>
-    <div class="add_article">
-
+    <div id="editor">
+        <textarea style="display: none;"></textarea>
     </div>
+{% endblock %}
+
+{% block js %}
+    <script src="/static/editor-md/lib/marked.min.js"></script>
+    <script src="/static/editor-md/lib/prettify.min.js"></script>
+    <script src="/static/jquery/jquery.min.js"></script>
+    <script src="/static/editor-md/editormd.min.js"></script>
+    <!--以下是textarea区域的配置内容-->
+    <script>
+        $(function () {
+            editormd("editor", {
+                width:"100%",
+                height:"700",
+                path:"/static/editor-md/lib"
+            });
+        });
+    </script>
 {% endblock %}

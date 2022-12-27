@@ -2,6 +2,60 @@
   margin-bottom: 20px;
 }
 
+.el-drawer__body {
+  position: relative;
+}
+
 .add_content {
   padding: 0 20px; //上下为0，左右为20
+
+  .category_tags .el-collapse-item__content {
+    display: flex;
+    justify-content: space-between;
+
+    .category {
+      width: 40%;
+    }
+
+    .tags {
+      width: 58%;
+    }
+  }
+
+  .article_cover .el-collapse-item__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .left {
+      width: 40%;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .right {
+      width: 58%;
+
+      .el-select {
+        width: 100%;
+      }
+    }
+  }
+
+  .choose_option_ .el-collapse-item__content {
+    padding-bottom: 0;
+
+    > div {
+      display: block;
+      margin-bottom: 10px;
+    }
+  }
+
+  .article_btn_list {
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+  }
 }

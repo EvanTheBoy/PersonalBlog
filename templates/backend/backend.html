@@ -182,12 +182,12 @@
             //下面这个函数直接从官网复制即可
             //链接:https://element.eleme.cn/#/en-US/component/drawer
             add_handleClose(done) {
-                this.$confirm('Are you sure you want to close this?')
-                    .then(_ => {
-                        done();
-                    })
-                    .catch(_ => {});
+                done()
             },
+            //添加文章的函数
+            add_article() {
+
+            }
         }
     })
 </script>

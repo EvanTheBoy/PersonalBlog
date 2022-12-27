@@ -16,6 +16,7 @@ def banner(menu_name, article=None):
         "/static/myFile/image/header/slideshow4.jpg",
     ]
     if article:
+        # 存在，说明是文章详情页
         cover = article.cover.url.url  # 本来前面还需要拼一个/media/, 但因为，如果只写一个url,拿到的只是字段，要拿到里面的数据，还需要一个url
         # 因此需要写两个url, 而写了两个url之后，/media/就被自动拼好了，因此也就不再需要我们自己手动拼了
         img_list = [cover]

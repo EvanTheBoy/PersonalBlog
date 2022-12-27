@@ -31,7 +31,8 @@
         </ul>
     </aside>
     <main>
-        <div class="user_info">
+        {% block main %}
+            <div class="user_info">
             <div class="left">
                 <img src="/static/myFile/image/avatar/test_avatar.webp" alt="">
             </div>
@@ -56,79 +57,82 @@
                 </div>
             </div>
         </div>
-        <div class="actions">
-            <div class="item">
-                <el-button type="primary">完善信息</el-button>
-            </div>
-            <div class="item">
-                <el-button type="success">修改头像</el-button>
-            </div>
-            <div class="item">
-                <el-button type="info">修改密码</el-button>
-            </div>
-            <div class="item">
-                <el-button type="danger">注销账号</el-button>
-            </div>
-        </div>
-        <div class="article_collection">
-            <p>我收藏的文章</p>
-            <div class="article_list">
+            <div class="actions">
                 <div class="item">
-                    <div class="left">
-                        <img src="/static/myFile/image/article_collection/match1.jpg" alt="">
-                    </div>
-                    <div class="right">
-                        <h4>路由分发</h4>
-                        <p>静态文件显示配置，在项目根目录下创建一个static目录，在settings.py中写上静态文件显示配置</p>
-                    </div>
+                    <el-button type="primary">完善信息</el-button>
                 </div>
                 <div class="item">
-                    <div class="left">
-                        <img src="/static/myFile/image/article_collection/match1.jpg" alt="">
-                    </div>
-                    <div class="right">
-                        <h4>路由分发</h4>
-                        <p>静态文件显示配置，在项目根目录下创建一个static目录，在settings.py中写上静态文件显示配置</p>
-                    </div>
+                    <el-button type="success">修改头像</el-button>
                 </div>
                 <div class="item">
-                    <div class="left">
-                        <img src="/static/myFile/image/article_collection/match1.jpg" alt="">
-                    </div>
-                    <div class="right">
-                        <h4>路由分发</h4>
-                        <p>静态文件显示配置，在项目根目录下创建一个static目录，在settings.py中写上静态文件显示配置</p>
-                    </div>
+                    <el-button type="info">修改密码</el-button>
                 </div>
                 <div class="item">
-                    <div class="left">
-                        <img src="/static/myFile/image/article_collection/match1.jpg" alt="">
-                    </div>
-                    <div class="right">
-                        <h4>路由分发</h4>
-                        <p>静态文件显示配置，在项目根目录下创建一个static目录，在settings.py中写上静态文件显示配置</p>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="left">
-                        <img src="/static/myFile/image/article_collection/match1.jpg" alt="">
-                    </div>
-                    <div class="right">
-                        <h4>路由分发</h4>
-                        <p>静态文件显示配置，在项目根目录下创建一个static目录，在settings.py中写上静态文件显示配置</p>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="left">
-                        <img src="/static/myFile/image/article_collection/match1.jpg" alt="">
-                    </div>
-                    <div class="right">
-                        <h4>路由分发</h4>
-                        <p>静态文件显示配置，在项目根目录下创建一个static目录，在settings.py中写上静态文件显示配置</p>
-                    </div>
+                    <el-button type="danger">注销账号</el-button>
                 </div>
             </div>
-        </div>
+            {% block content %}
+                <div class="article_collection">
+                <p>我收藏的文章</p>
+                <div class="article_list">
+                    <div class="item">
+                        <div class="left">
+                            <img src="/static/myFile/image/article_collection/match1.jpg" alt="">
+                        </div>
+                        <div class="right">
+                            <h4>路由分发</h4>
+                            <p>静态文件显示配置，在项目根目录下创建一个static目录，在settings.py中写上静态文件显示配置</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="left">
+                            <img src="/static/myFile/image/article_collection/match1.jpg" alt="">
+                        </div>
+                        <div class="right">
+                            <h4>路由分发</h4>
+                            <p>静态文件显示配置，在项目根目录下创建一个static目录，在settings.py中写上静态文件显示配置</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="left">
+                            <img src="/static/myFile/image/article_collection/match1.jpg" alt="">
+                        </div>
+                        <div class="right">
+                            <h4>路由分发</h4>
+                            <p>静态文件显示配置，在项目根目录下创建一个static目录，在settings.py中写上静态文件显示配置</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="left">
+                            <img src="/static/myFile/image/article_collection/match1.jpg" alt="">
+                        </div>
+                        <div class="right">
+                            <h4>路由分发</h4>
+                            <p>静态文件显示配置，在项目根目录下创建一个static目录，在settings.py中写上静态文件显示配置</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="left">
+                            <img src="/static/myFile/image/article_collection/match1.jpg" alt="">
+                        </div>
+                        <div class="right">
+                            <h4>路由分发</h4>
+                            <p>静态文件显示配置，在项目根目录下创建一个static目录，在settings.py中写上静态文件显示配置</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="left">
+                            <img src="/static/myFile/image/article_collection/match1.jpg" alt="">
+                        </div>
+                        <div class="right">
+                            <h4>路由分发</h4>
+                            <p>静态文件显示配置，在项目根目录下创建一个static目录，在settings.py中写上静态文件显示配置</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endblock %}
+        {% endblock %}
     </main>
 </div>
 <script src="/static/vue/vue.js"></script>

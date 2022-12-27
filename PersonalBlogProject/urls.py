@@ -29,7 +29,9 @@ urlpatterns = [
     path('login/random_code/', views.get_random_code),
     path('logout/', views.logout),
     path('backend/', views.backend),  # 后台个人中心
-    path('backend/add_article/', views.add_article),
+    path('backend/add_article/', views.add_article),  # 添加文章
+    path('backend/edit_avatar/', views.edit_avatar),  # 修改头像
+    path('backend/reset_password/', views.reset_password),  # 重置密码
     re_path(r'^article/(?P<nid>\d+)/', views.article),
     re_path(r'^api/', include('api.urls')),  # 路由分发，将所有以api开头的请求分发到api的urls.py中
     re_path(r'media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT})  # 用户上传文件的路由配置

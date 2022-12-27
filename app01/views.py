@@ -57,11 +57,23 @@ def article(request, nid):
     return render(request, 'article.html', locals())  # locals()方法表示把所有的东西都传给前端，不需要单独写{"nid": nid}了
 
 
+# 后台个人中心
 def backend(request):
     if not request.user.username:
         return redirect("/")
-    return render(request, 'backend/backend.html')
+    return render(request, 'backend/backend.html', locals())
 
 
+# 添加文章
 def add_article(request):
-    return render(request, 'backend/add_article.html')
+    return render(request, 'backend/add_article.html', locals())
+
+
+# 修改头像
+def edit_avatar(request):
+    return render(request, 'backend/edit_avatar.html', locals())
+
+
+# 重置密码
+def reset_password(request):
+    return render(request, 'backend/reset_password.html', locals())

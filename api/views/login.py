@@ -46,7 +46,7 @@ class LoginForm(BaseForm):
         # 全局钩子的命名规则就是cleaned_'自己命的名'，这样的方式命名
         name = self.cleaned_data.get('name')
         pwd = self.cleaned_data.get('pwd')
-        # 这个方法就是用来验证登录信息是否正确的，当然是从数据库中取数据
+        # 验证登录信息是否正确的，当然是从数据库中取数据
         user = auth.authenticate(username=name, password=pwd)
         if not user:
             # 为字段添加错误信息

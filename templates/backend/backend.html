@@ -35,6 +35,7 @@
         </ul>
     </aside>
     <main>
+    {% csrf_token %}
         {% block main %}
             <div class="user_info">
             <div class="left">
@@ -139,12 +140,27 @@
         {% endblock %}
     </main>
 </div>
+<script src="/static/axios/axios.min.js"></script>
 <script src="/static/vue/vue.js"></script>
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 {% block js %}
 
 {% endblock %}
 <script>
+    //请求中间件
+    axios.interceptors.request.use(request => {
+        if (request.method === 'post') {
+            let csrf_token = document.querySelector('input[name="csrfmiddlewaretoken"]').value
+            //加上一个请求头
+            request.headers['X-CSRFToken'] = csrf_token
+        }
+        return request
+    })
+    //响应中间件
+    axios.interceptors.response.use(response => {
+        return response.data
+    })
+
     new Vue({
         el: '#app',
         data: {
@@ -184,6 +200,10 @@
                     content: editor.querySelector('.editormd-markdown-textarea').value
                 }
                 console.log(data)
+                //在这里把用户添加的信息（我们要的数据）发出去
+                axios.post('/api/article/', data).then(res => {
+
+                })
             },
             //实现选中图片链接后就切换图片
             select_cover(val) {

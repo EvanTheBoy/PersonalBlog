@@ -158,25 +158,11 @@
                 {value: 2, label:'项目相关'}
             ],
             tags:[], //双向绑定的标签
-            tag_options:[ //标签的下拉框选择
-                {value: 0, label:'python'},
-                {value: 1, label:'java'},
-                {value: 2, label:'Django'},
-                {value: 3, label:'Spring'},
-                {value: 4, label:'php'},
-                {value: 5, label:'vue'},
-            ],
             recommend: true, //是否上推荐
             pwd_active: false, //是否加密，默认不加密
             pwd: '', //若加密，需要输的密码
             cover_id: '', //封面的id
-            cover_options: [ //封面的下拉框选择
-                {value: 0, label:'/static/myFile/image/article/pic15.png'},
-                {value: 1, label:'/static/myFile/image/article/pic16.png'},
-                {value: 2, label:'/static/myFile/image/article/pic17.png'},
-                {value: 3, label:'/static/myFile/image/article/pic18.jpg'},
-                {value: 4, label:'/static/myFile/image/article/pic19.jpg'},
-            ]
+            abstract: ''   //文章简介
         },
         methods: {
             //下面这个函数直接从官网复制即可
@@ -197,6 +183,14 @@
                     content: editor.querySelector('.editormd-markdown-textarea').value
                 }
                 console.log(data)
+            },
+            //实现选中图片链接后就切换图片
+            select_cover(val) {
+                setTimeout(() => {
+                    let v = document.querySelector('.article_cover input').value
+                    let cover = document.getElementById('cover_img')
+                    cover.src = v  //属于异步操作，所以要一个定时器
+                }, 1)
             }
         }
     })

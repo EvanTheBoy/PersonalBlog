@@ -19,7 +19,16 @@
               <el-collapse-item title="标题" name="1">
                   <el-input placeholder="请输入文章标题" v-model="input_title"></el-input>
               </el-collapse-item>
-              <el-collapse-item class="category_tags" title="分类与标签" name="2">
+              <el-collapse-item title="简介" name="2">
+                  <el-input
+                          type="textarea"
+                          :rows="5"
+                          resize="none"
+                          placeholder="请输入文章简介(不填默认截取前30个字符)"
+                          v-model="textarea">
+                  </el-input>
+              </el-collapse-item>
+              <el-collapse-item class="category_tags" title="分类与标签" name="3">
                   <el-select v-model="category_id" class="category" placeholder="请选择文章分类">
                       <el-option
                               v-for="item in category_options"
@@ -31,34 +40,37 @@
                   <el-select
                           v-model="tags"
                           multiple
+                          filterable
+                          allow-create
+                          default-first-option
                           collapse-tags
                           class="tags"
                           style="margin-left: 20px;"
                           placeholder="请选择文章标签">
-                      <el-option
-                              v-for="item in tag_options"
-                              :key="item.value"
-                              :label="item.label"
-                              :value="item.value">
-                      </el-option>
+                          {% for tag in tag_list %}  <!--这个tag_list是在views.py中获取的-->
+                              <el-option
+                                      label="{{ tag.title }}"
+                                      value="{{ tag.nid }}">
+                              </el-option>
+                          {% endfor %}
                   </el-select>
               </el-collapse-item>
-              <el-collapse-item class="article_cover" title="封面" name="3">
+              <el-collapse-item class="article_cover" title="封面" name="4">
                   <div class="left">
-                      <img src="/static/myFile/image/article/pic6.jpg" alt="">
+                      <img id="cover_img" src="/static/myFile/image/article/cover1.png" alt="">
                   </div>
                   <div class="right">
-                      <el-select v-model="cover_id" placeholder="请选择封面">
-                          <el-option
-                                  v-for="item in cover_options"
-                                  :key="item.value"
-                                  :label="item.label"
-                                  :value="item.value">
-                          </el-option>
+                      <el-select @change="select_cover" v-model="cover_id" placeholder="请选择封面">
+                          {% for cover in cover_list %}
+                              <el-option
+                                      label="{{ cover.url.url }}"
+                                      value="{{ cover.nid }}">
+                              </el-option>
+                          {% endfor %}
                       </el-select>
                   </div>
               </el-collapse-item>
-              <el-collapse-item class="choose_option_" title="可选设置" name="4">
+              <el-collapse-item class="choose_option_" title="可选设置" name="5">
                   <el-switch
                           style="display: block"
                           v-model="recommend"

@@ -202,7 +202,16 @@
                 console.log(data)
                 //在这里把用户添加的信息（我们要的数据）发出去
                 axios.post('/api/article/', data).then(res => {
-
+                    //若用户添加文章出现了错误，就将错误提示信息打在公屏上
+                    if (res.code) {
+                        this.$message.error(res.msg)
+                        return
+                    }
+                    //若成功，就跳转
+                    this.$message.success(res.msg)
+                    setTimeout(() => {
+                        location.href = `/article/${res.data}/`
+                    }, 1000)
                 })
             },
             //实现选中图片链接后就切换图片

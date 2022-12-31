@@ -2,13 +2,15 @@ from django.views import View
 from django.http import JsonResponse
 from markdown import markdown
 from pyquery import PyQuery
+from app01.models import Tags, Articles, Cover
 
 
 class ArticleView(View):
     def post(self, request):
         res = {
             "msg": "文章发布成功",
-            "code": 412
+            "code": 412,
+            "data": None
         }
         data: dict = request.data
         # 要求发布文章必须要填写标题和内容
@@ -23,16 +25,16 @@ class ArticleView(View):
             return JsonResponse(res)
 
         recommend = data.get('recommend')
-
+        content = data.get('content')
         # 有些数据必须有，有些没有，这里先肯定有必有的数据
         # 至于那些不一定有的，管它呢，有就添加，没有拉倒
         extra = {
             "title": title,
             "content": content,
-            "recommend": recommend
+            "recommend": recommend,
+            "status": 1
         }
 
-        content = data.get('content')
         # 接下来是两个markdown的处理函数
         # 经过处理后可以得到纯文本
         # 若没有简介，获取文章内容的前30个字符
@@ -55,4 +57,19 @@ class ArticleView(View):
         if pwd:
             extra['pwd'] = pwd
 
-        return JsonResponse(extra)
+        # 添加文章
+        article_obj = Articles.objects.create(**extra)
+
+        tags = data.get('tags')
+        if tags:
+            for tag in tags:
+                if not tag.isdigit():
+                    tag_obj = Tags.objects.create(title=tag)
+                    article_obj.tag.add(tag_obj)
+                else:
+                    article_obj.tag.add(tag)
+
+        res['code'] = 0
+        res['data'] = article_obj.nid
+
+        return JsonResponse(res)

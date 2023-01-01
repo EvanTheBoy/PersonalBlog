@@ -180,6 +180,17 @@
             cover_id: '', //封面的id
             abstract: ''   //文章简介
         },
+        //在前端实现文章封面的随机挑选
+        //后端也做，实现双保险
+        created() {
+            let img = document.getElementById('cover_img')
+            //eval()函数把这个字符串变成数组
+            let cover_list = eval(img.getAttribute('data'))
+            //随机取到某张图片的nid
+            let item = cover_list[Math.floor((Math.random * cover_list.length))]
+            img.setAttribute('src', item.url)
+            this.cover_id = item.nid.toString()
+        },
         methods: {
             //下面这个函数直接从官网复制即可
             //链接:https://element.eleme.cn/#/en-US/component/drawer
@@ -195,7 +206,7 @@
                     recommend: this.recommend,
                     pwd: this.pwd,
                     tags: this.tags,
-                    category_id: this.category_id,
+                    category: this.category_id,
                     abstract: this.abstract,
                     content: editor.querySelector('.editormd-markdown-textarea').value
                 }

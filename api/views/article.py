@@ -1,8 +1,60 @@
+import random
+
 from django.views import View
 from django.http import JsonResponse
 from markdown import markdown
 from pyquery import PyQuery
 from app01.models import Tags, Articles, Cover
+from django import forms
+from api.views.login import clean_form
+
+
+# form表单都是把所有错误收集完毕然后一起返回
+class AddArticleForm(forms.Form):
+    # 以下添加了error_messages，那么在调用form.is_valid()方法时就只会验证这两个字段
+    title = forms.CharField(error_messages={'required': "请输入文章标题"})
+    content = forms.CharField(error_messages={'required': "请输入文章内容"})
+    abstract = forms.CharField(required=False)  # required=False表示不进行为空验证，就是说它可以为空
+    cover_id = forms.IntegerField(required=False)
+
+    category = forms.IntegerField(required=False)
+    pwd = forms.CharField(required=False)
+    recommend = forms.BooleanField(required=False)
+    status = forms.IntegerField(required=False)
+
+    # 全局钩子，校验文章分类和密码
+    def clean(self):
+        category = self.cleaned_data.get('category')
+        if not category:
+            # 没有的话就不要了
+            self.cleaned_data.pop('category')
+
+        pwd = self.cleaned_data.get('pwd')
+        if not pwd:
+            # 没有的话就不要了
+            self.cleaned_data.pop('pwd')
+
+    # 文章简介
+    def clean_abstract(self):
+        abstract = self.cleaned_data.get('abstract')
+        if abstract:
+            return abstract
+        # 能走到这一步说明abstract不存在
+        # 那就只能截取文章内容
+        content = self.cleaned_data.get('content')
+        if content:
+            abstract = PyQuery(markdown(content)).text()[:30]
+            return abstract
+
+    # 封面
+    def clean_cover_id(self):
+        cover_id = self.cleaned_data.get('cover_id')
+        if cover_id:
+            return cover_id
+        # 调用库函数all()进行查询，返回的结果是个字典
+        cover_set = Cover.objects.all().values()
+        cover_id = random.choice(cover_set)['nid']
+        return cover_id
 
 
 class ArticleView(View):
@@ -13,63 +65,99 @@ class ArticleView(View):
             "data": None
         }
         data: dict = request.data
-        # 要求发布文章必须要填写标题和内容
-        title = data.get('title')
-        if not title:
-            res["msg"] = "请输入文章标题"
+        # 直接添加一个状态的键值对
+        data['status'] = 1
+        form = AddArticleForm(data)
+        # 校验不通过
+        if not form.is_valid():
+            res['self'], res['msg'] = clean_form(form)
             return JsonResponse(res)
-
-        content = data.get('content')
-        if not content:
-            res['msg'] = "请输入文章内容"
-            return JsonResponse(res)
-
-        recommend = data.get('recommend')
-        content = data.get('content')
-        # 有些数据必须有，有些没有，这里先肯定有必有的数据
-        # 至于那些不一定有的，管它呢，有就添加，没有拉倒
-        extra = {
-            "title": title,
-            "content": content,
-            "recommend": recommend,
-            "status": 1
-        }
-
-        # 接下来是两个markdown的处理函数
-        # 经过处理后可以得到纯文本
-        # 若没有简介，获取文章内容的前30个字符
-        abstract = data.get('abstract')
-        if not abstract:
-            abstract = PyQuery(markdown(content)).text()[:30]
-        extra['abstract'] = abstract
-
-        category = data.get('category_id')
-        if category:
-            extra['category'] = category
-
-        cover_id = data.get('cover_id')
-        if cover_id:
-            extra['cover_id'] = cover_id
-        else:
-            extra['cover_id'] = 1
-
-        pwd = data.get("pwd")
-        if pwd:
-            extra['pwd'] = pwd
-
-        # 添加文章
-        article_obj = Articles.objects.create(**extra)
-
+        # 校验通过，直接返回
+        # 直接在form.cleaned_data中添加，否则要是在data中添加的话，前面
+        # 需要先验证，太麻烦了
+        form.cleaned_data['author'] = 'Evan'
+        form.cleaned_data['source'] = "Evan的个人博客"
+        article_pbj = Articles.objects.create(**form.cleaned_data)
         tags = data.get('tags')
-        if tags:
-            for tag in tags:
-                if not tag.isdigit():
-                    tag_obj = Tags.objects.create(title=tag)
-                    article_obj.tag.add(tag_obj)
-                else:
-                    article_obj.tag.add(tag)
+        for tag in tags:
+            if tag.isdigit():
+                article_pbj.tag.add(tag)
+            else:
+                # 不是数字，那就先创建词条再添加
+                tag_obj = Tags.objects.create(title=tag)
+                article_pbj.tag.add(tag_obj)
 
         res['code'] = 0
-        res['data'] = article_obj.nid
-
+        res['data'] = article_pbj.nid
+        # res是要返回给前端的信息，而data里面是文章本身的信息
+        # 不要二者搞混了
         return JsonResponse(res)
+
+# class ArticleView(View):
+#     def post(self, request):
+#         res = {
+#             "msg": "文章发布成功",
+#             "code": 412,
+#             "data": None
+#         }
+#         data: dict = request.data
+#         # 要求发布文章必须要填写标题和内容
+#         title = data.get('title')
+#         if not title:
+#             res["msg"] = "请输入文章标题"
+#             return JsonResponse(res)
+#
+#         content = data.get('content')
+#         if not content:
+#             res['msg'] = "请输入文章内容"
+#             return JsonResponse(res)
+#
+#         recommend = data.get('recommend')
+#         content = data.get('content')
+#         # 有些数据必须有，有些没有，这里先肯定有必有的数据
+#         # 至于那些不一定有的，管它呢，有就添加，没有拉倒
+#         extra = {
+#             "title": title,
+#             "content": content,
+#             "recommend": recommend,
+#             "status": 1
+#         }
+#
+#         # 接下来是两个markdown的处理函数
+#         # 经过处理后可以得到纯文本
+#         # 若没有简介，获取文章内容的前30个字符
+#         abstract = data.get('abstract')
+#         if not abstract:
+#             abstract = PyQuery(markdown(content)).text()[:30]
+#         extra['abstract'] = abstract
+#
+#         category = data.get('category')
+#         if category:
+#             extra['category'] = category
+#
+#         cover_id = data.get('cover_id')
+#         if cover_id:
+#             extra['cover_id'] = cover_id
+#         else:
+#             extra['cover_id'] = 1
+#
+#         pwd = data.get("pwd")
+#         if pwd:
+#             extra['pwd'] = pwd
+#
+#         # 添加文章
+#         article_obj = Articles.objects.create(**extra)
+#
+#         tags = data.get('tags')
+#         if tags:
+#             for tag in tags:
+#                 if not tag.isdigit():
+#                     tag_obj = Tags.objects.create(title=tag)
+#                     article_obj.tag.add(tag_obj)
+#                 else:
+#                     article_obj.tag.add(tag)
+#
+#         res['code'] = 0
+#         res['data'] = article_obj.nid
+#
+#         return JsonResponse(res)

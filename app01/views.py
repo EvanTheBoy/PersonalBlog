@@ -85,3 +85,6 @@ def edit_avatar(request):
 # 重置密码
 def reset_password(request):
     return render(request, 'backend/reset_password.html', locals())
+
+def edit_article(request):
+    return render(request, )

@@ -1,1 +1,96 @@
 {% extends 'backend/add_article.html' %}
+
+{% block btn %}
+    <el-button type="danger" @click="add_drawer=true">编辑文章信息</el-button>
+{% endblock %}
+
+{% block drawer %}
+    <el-drawer
+  title="编辑文章"
+  :visible.sync="add_drawer"
+  direction="rtl"
+  :before-close="add_handleClose">
+  <div class="add_content">
+      <el-collapse v-model="add_article_activeNames">
+          <el-collapse-item title="标题" name="1">
+              <el-input placeholder="请输入文章标题" v-model="input_title"></el-input>
+          </el-collapse-item>
+          <el-collapse-item title="简介" name="2">
+              <el-input
+                      type="textarea"
+                      :rows="5"
+                      resize="none"
+                      placeholder="请输入文章简介(不填默认截取前30个字符)"
+                      v-model="abstract">
+              </el-input>
+          </el-collapse-item>
+          <el-collapse-item class="category_tags" title="分类与标签" name="3">
+              <el-select v-model="category_id" class="category" placeholder="请选择文章分类">
+                  <el-option
+                          v-for="item in category_options"
+                          :key="item.value"
+                          :label="item.label"
+                          :value="item.value">
+                  </el-option>
+              </el-select>
+              <el-select
+                      v-model="tags"
+                      multiple
+                      filterable
+                      allow-create
+                      default-first-option
+                      collapse-tags
+                      class="tags"
+                      style="margin-left: 20px;"
+                      placeholder="请选择文章标签">
+                      {% for tag in tag_list %}  <!--这个tag_list是在views.py中获取的-->
+                          <el-option
+                                  label="{{ tag.title }}"
+                                  value="{{ tag.nid }}">
+                          </el-option>
+                      {% endfor %}
+              </el-select>
+          </el-collapse-item>
+          <el-collapse-item class="article_cover" title="封面" name="4">
+              <div class="left">
+                  <img id="cover_img" data="{{ c_l }}" src="/static/myFile/image/article/cover1.png" alt="">
+              </div>
+              <div class="right">
+                  <el-select @change="select_cover" clearable v-model="cover_id" placeholder="请选择封面">
+                      {% for cover in cover_list %}
+                          <el-option
+                                  label="{{ cover.url.url }}"
+                                  value="{{ cover.nid }}">
+                          </el-option>
+                      {% endfor %}
+                  </el-select>
+              </div>
+          </el-collapse-item>
+          <el-collapse-item class="choose_option_" title="可选设置" name="5">
+              <el-switch
+                      style="display: block"
+                      v-model="recommend"
+                      active-color="#13ce66"
+                      inactive-color="#ff4949"
+                      active-text="推荐此文章"
+                      inactive-text="不推荐此文章">
+              </el-switch>
+              <el-switch
+                      v-model="pwd_active"
+                      active-text="加密"
+                      inactive-text="不加密">
+              </el-switch>
+              <el-input v-show="pwd_active" v-model="pwd" placeholder="请输入加密密码"></el-input>
+              <!--以上，v-show就是表示若不加密，密码输入框默认不显示；只有当选择让其加密时，才显示-->
+          </el-collapse-item>
+      </el-collapse>
+      <div class="article_btn_list">
+          <el-button @click="add_article" type="danger">确认</el-button>
+      </div>
+  </div>
+</el-drawer>
+{% endblock %}
+
+{% block textarea %}
+    <textarea style="display: none;">{{ article_obj.content }}</textarea>
+{% endblock %}

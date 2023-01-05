@@ -7,9 +7,12 @@
 
 {% block main %}
     <div class="add_article_actions">
-        <el-button type="primary" @click="add_drawer=true">完善文章信息</el-button>
+        {% block btn %}
+            <el-button type="primary" @click="add_drawer=true">完善文章信息</el-button>
+        {% endblock %}
     </div>
-    <el-drawer
+    {% block drawer %}
+        <el-drawer
       title="添加文章"
       :visible.sync="add_drawer"
       direction="rtl"
@@ -93,8 +96,11 @@
           </div>
       </div>
     </el-drawer>
+    {% endblock %}
     <div id="editor">
-        <textarea style="display: none;"></textarea>
+        {% block textarea %}
+            <textarea style="display: none;"></textarea>
+        {% endblock %}
     </div>
 {% endblock %}
 

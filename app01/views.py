@@ -86,5 +86,8 @@ def edit_avatar(request):
 def reset_password(request):
     return render(request, 'backend/reset_password.html', locals())
 
-def edit_article(request):
-    return render(request, )
+
+# 编辑文章
+def edit_article(request, nid):
+    article_obj = Articles.objects.get(nid=nid)
+    return render(request, 'backend/edit_article.html', locals())

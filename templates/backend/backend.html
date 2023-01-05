@@ -184,12 +184,12 @@
         //后端也做，实现双保险
         created() {
             let img = document.getElementById('cover_img')
-            //eval()函数把这个字符串变成数组
-            let cover_list = eval(img.getAttribute('data'))
-            //随机取到某张图片的nid
-            let item = cover_list[Math.floor((Math.random * cover_list.length))]
-            img.setAttribute('src', item.url)
-            this.cover_id = item.nid.toString()
+            {#//eval()函数把这个字符串变成数组#}
+            {#let cover_list = eval(img.getAttribute('data'))#}
+            {#//随机取到某张图片的nid#}
+            {#let item = cover_list[Math.floor((Math.random * cover_list.length))]#}
+            {#img.setAttribute('src', item.url)#}
+            {#this.cover_id = item.nid.toString()#}
 
             let box = document.getElementById('edit_info')
             this.title = box.getAttribute('data_title')
@@ -207,7 +207,7 @@
             this.cover_id = box.getAttribute('data_cover_id')
             let cover_url = box.getAttribute('data_cover_url')
             img.setAttribute('src', cover_url)
-            let recommend = eval(box.getAttribute('data_recommend'))
+            let recommend = box.getAttribute('data_recommend')
             this.recommend = recommend === 'True';
         },
         methods: {

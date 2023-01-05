@@ -190,6 +190,25 @@
             let item = cover_list[Math.floor((Math.random * cover_list.length))]
             img.setAttribute('src', item.url)
             this.cover_id = item.nid.toString()
+
+            let box = document.getElementById('edit_info')
+            this.title = box.getAttribute('data_title')
+            this.abstract = box.getAttribute('data_abstract')
+            let pwd = box.getAttribute('data_pwd')
+            if (pwd !== 'None') {
+                this.pwd = pwd
+                this.pwd_active = true
+            }
+            let category_id = box.getAttribute('data_category')
+            if (category_id !== 'None') {
+                this.category_id = category_id
+            }
+            this.tags = eval(box.getAttribute('data_tags'))
+            this.cover_id = box.getAttribute('data_cover_id')
+            let cover_url = box.getAttribute('data_cover_url')
+            img.setAttribute('src', cover_url)
+            let recommend = eval(box.getAttribute('data_recommend'))
+            this.recommend = recommend === 'True';
         },
         methods: {
             //下面这个函数直接从官网复制即可

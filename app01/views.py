@@ -74,6 +74,7 @@ def add_article(request):
             'url': cover.url.url,
             'nid': cover.nid
         })
+    category_list = Articles.category_choice
     return render(request, 'backend/add_article.html', locals())
 
 
@@ -90,4 +91,15 @@ def reset_password(request):
 # 编辑文章
 def edit_article(request, nid):
     article_obj = Articles.objects.get(nid=nid)
+    tags = [str(tag.nid) for tag in article_obj.tag.all()]
+
+    tag_list = Tags.objects.all()
+    cover_list = Cover.objects.all()
+    c_l = []
+    for cover in cover_list:
+        c_l.append({
+            'url': cover.url.url,
+            'nid': cover.nid
+        })
+    category_list = Articles.category_choice
     return render(request, 'backend/edit_article.html', locals())

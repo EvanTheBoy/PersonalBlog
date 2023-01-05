@@ -1,7 +1,7 @@
 {% extends 'backend/add_article.html' %}
 
 {% block btn %}
-    <el-button type="danger" @click="add_drawer=true">编辑文章信息</el-button>
+    <el-button id="edit_info" data_title="{{ article_obj.title }}" type="danger" @click="add_drawer=true">编辑文章信息</el-button>
 {% endblock %}
 
 {% block drawer %}

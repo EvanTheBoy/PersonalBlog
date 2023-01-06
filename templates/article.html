@@ -26,7 +26,11 @@
             </div>
         </div>
         <div class="article_title">
-            <h2>{{ passage.title }}</h2>
+            <h2>{{ passage.title }}
+                {% if request.user.is_superuser %}
+                    <a href="/backend/edit_article/{{ passage.nid }}/"><i class="fas fa-edit"></i></a>
+                {% endif %} 
+            </h2>
             <p>
                 <span>发布时间: <i>{{ passage.create_date|date:'Y-m-d' }}</i></span>  <!--date后面那种写法是为了指定日期的格式-->
                 <span>作者: <i>{{ passage.author }}</i></span>

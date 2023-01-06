@@ -15,7 +15,10 @@ from app01.models import Articles, Tags, Cover
 
 def get_index(request):
     # 以下render函数的第三个参数，就保证了request可以在前端页面中被用到
-    return render(request, "index.html", {"request": request})
+    articles_list = Articles.objects.filter(status=1).order_by('-change_date')
+    frontend_list = articles_list.filter(category=1)[:6]  # 过滤出前端的文章
+    backend_list = articles_list.filter(category=2)[:6]  # 过滤出后端的文章
+    return render(request, "index.html", locals())
 
 
 def news(request):

@@ -81,152 +81,36 @@
                         </div>
                         <div class="body">
                             <ul v-show="category === 'front_end'" class="front_end">
-                                <li>
-                                    <div class="left">
-                                        <div>
-                                            <img src="/static/myFile/image/article/pic3.jpg" alt="">
+                                {% for frontend in frontend_list %}
+                                    <li>
+                                        <div class="left">
+                                            <div>
+                                                <img src="{{ frontend.cover.url.url }}" alt="">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="right">
-                                        <h2>React的基本使用</h2>
-                                        <p>安装React包 Python npm i 安装React包 Python npm i</p>
-                                        <span>2天前</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="left">
-                                        <div>
-                                            <img src="/static/myFile/image/article/pic4.jpg" alt="">
+                                        <div class="right">
+                                            <h2><a href="/article/{{ frontend.nid }}/">{{ frontend.title }}</a></h2>
+                                            <p>{{ frontend.abstract }}</p>
+                                            <span>{{ frontend.create_date }}</span>
                                         </div>
-                                    </div>
-                                    <div class="right">
-                                        <h2>React的基本使用</h2>
-                                        <p>安装React包 Python npm i 安装React包 Python npm i</p>
-                                        <span>2天前</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="left">
-                                        <div>
-                                            <img src="/static/myFile/image/article/pic5.jpg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="right">
-                                        <h2>React的基本使用</h2>
-                                        <p>安装React包 Python npm i 安装React包 Python npm i</p>
-                                        <span>2天前</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="left">
-                                        <div>
-                                            <img src="/static/myFile/image/article/pic6.jpg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="right">
-                                        <h2>React的基本使用</h2>
-                                        <p>安装React包 Python npm i 安装React包 Python npm i</p>
-                                        <span>2天前</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="left">
-                                        <div>
-                                            <img src="/static/myFile/image/article/pic7.jpg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="right">
-                                        <h2>React的基本使用</h2>
-                                        <p>安装React包 Python npm i 安装React包 Python npm i</p>
-                                        <span>2天前</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="left">
-                                        <div>
-                                            <img src="/static/myFile/image/article/pic8.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="right">
-                                        <h2>React的基本使用</h2>
-                                        <p>安装React包 Python npm i 安装React包 Python npm i</p>
-                                        <span>2天前</span>
-                                    </div>
-                                </li>
+                                    </li>
+                                {% endfor %}
                             </ul>
                             <ul v-show="category === 'back_end'" class="back_end">
-                                <li>
+                                {% for backend in backend_list %}
+                                    <li>
                                     <div class="left">
                                         <div>
-                                            <img src="/static/myFile/image/article/pic9.png" alt="">
+                                            <img src="{{ backend.cover.url.url }}" alt="">
                                         </div>
                                     </div>
                                     <div class="right">
-                                        <h2>Django的原理</h2>
-                                        <p>安装React包 Python npm i 安装React包 Python npm i</p>
-                                        <span>2天前</span>
+                                        <h2><a href="/article/{{ backend.nid }}/">{{ backend.title }}</a></h2>
+                                        <p>{{ backend.abstract }}</p>
+                                        <span>{{ backend.create_date }}</span>
                                     </div>
                                 </li>
-                                <li>
-                                    <div class="left">
-                                        <div>
-                                            <img src="/static/myFile/image/article/pic10.jpg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="right">
-                                        <h2>Java程序员面经</h2>
-                                        <p>安装React包 Python npm i 安装React包 Python npm i</p>
-                                        <span>2天前</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="left">
-                                        <div>
-                                            <img src="/static/myFile/image/article/pic11.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="right">
-                                        <h2>React的基本使用</h2>
-                                        <p>安装React包 Python npm i 安装React包 Python npm i</p>
-                                        <span>2天前</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="left">
-                                        <div>
-                                            <img src="/static/myFile/image/article/pic12.jpg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="right">
-                                        <h2>React的基本使用</h2>
-                                        <p>安装React包 Python npm i 安装React包 Python npm i</p>
-                                        <span>2天前</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="left">
-                                        <div>
-                                            <img src="/static/myFile/image/article/pic13.jpg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="right">
-                                        <h2>React的基本使用</h2>
-                                        <p>安装React包 Python npm i 安装React包 Python npm i</p>
-                                        <span>2天前</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="left">
-                                        <div>
-                                            <img src="/static/myFile/image/article/pic14.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="right">
-                                        <h2>React的基本使用</h2>
-                                        <p>安装React包 Python npm i 安装React包 Python npm i</p>
-                                        <span>2天前</span>
-                                    </div>
-                                </li>
+                                {% endfor %}
                             </ul>
                         </div>
                     </div>
@@ -247,74 +131,36 @@
                         </div>
                         <div class="body">
                             <ul>
-                                <li>
-                                    <div class="left">
-                                        <img src="/static/myFile/image/article/pic1.jpg" alt="">
-                                    </div>
-                                    <div class="right">
-                                        <h2><a href="#">React的基本使用</a></h2>
-                                        <p>
-                                            安装React包，
-                                            Python npm i react react-dom//
-                                            之类的下载指令
-                                            使用React,html标签//
-                                            创建React元素，参数一:元素名称//
-                                            参数二:元素
-                                        </p>
-                                        <div class="article_info">
-                                            <span>
-                                                <i class="far fa-clock"></i>2022-10-29
-                                            </span>
-                                            <span>
-                                                <i class="fas fa-thumbs-up"></i>231
-                                            </span>
-                                            <span>
-                                                <i class="far fa-eye"></i>138
-                                            </span>
-                                            <span>
-                                                <i class="fas fa-comments"></i>57
-                                            </span>
-                                            <span>
-                                                <i class="fas fa-star-half-alt"></i>100
-                                            </span>
+                                {% for articles in articles_list %}
+                                    <li>
+                                        <div class="left">
+                                            <img src="{{ articles.cover.url.url }}" alt="">
                                         </div>
-                                        <a href="#">查看文章</a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="left">
-                                        <img src="/static/myFile/image/article/pic2.jpg" alt="">
-                                    </div>
-                                    <div class="right">
-                                        <h2><a href="#">React的基本使用</a></h2>
-                                        <p>
-                                            安装React包，
-                                            Python npm i react react-dom//
-                                            之类的下载指令
-                                            使用React,html标签//
-                                            创建React元素，参数一:元素名称//
-                                            参数二:元素
-                                        </p>
-                                        <div class="article_info">
-                                            <span>
-                                                <i class="far fa-clock"></i>2022-10-29
-                                            </span>
-                                            <span>
-                                                <i class="fas fa-thumbs-up"></i>231
-                                            </span>
-                                            <span>
-                                                <i class="far fa-eye"></i>138
-                                            </span>
-                                            <span>
-                                                <i class="fas fa-comments"></i>57
-                                            </span>
-                                            <span>
-                                                <i class="fas fa-star-half-alt"></i>100
-                                            </span>
+                                        <div class="right">
+                                            <h2><a href="/article/{{ articles.nid }}/">{{ articles.title }}</a></h2>
+                                            <p>{{ articles.abstract }}</p>
+                                            <div class="article_info">
+                                                <span>
+                                                    <i class="far fa-clock"></i>{{ articles.create_date|date:'Y-m-d' }}
+                                                </span>
+                                                <span>
+                                                    <i class="fas fa-thumbs-up"></i>{{ articles.digg_count }}
+                                                </span>
+                                                <span>
+                                                    <i class="far fa-eye"></i>{{ articles.look_count }}
+                                                </span>
+                                                <span>
+                                                    <i class="fas fa-comments"></i>{{ articles.comment_count }}
+                                                </span>
+                                                <span>
+                                                    <i class="fas fa-star-half-alt"></i>{{ articles.collects_count }}
+                                                </span>
+                                            </div>
+                                            <a href="/article/{{ articles.nid }}/" target="_blank">查看文章</a>
+                                            <!--新建一个标签页打开-->
                                         </div>
-                                        <a href="#">查看文章</a>
-                                    </div>
-                                </li>
+                                    </li>
+                                {% endfor %}
                             </ul>
                         </div>
                     </div>

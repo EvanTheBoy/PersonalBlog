@@ -13,7 +13,7 @@ class Md1(MiddlewareMixin):
     def process_request(self, request):
         # 并且判断它是json的就去解析，而如果是urlencoding就不解析
         # 只有当请求方式是post的时候才做处理
-        if request.method == 'POST' and request.META.get('CONTENT_TYPE') == 'application/json':
+        if request.method != 'GET' and request.META.get('CONTENT_TYPE') == 'application/json':
             data = json.loads(request.body)
             request.data = data
 

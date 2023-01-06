@@ -92,3 +92,43 @@ class ArticleView(View):
         # res是要返回给前端的信息，而data里面是文章本身的信息
         # 不要二者搞混了
         return JsonResponse(res)
+
+    def put(self, request, nid):
+        res = {
+            "msg": "文章编辑成功",
+            "code": 412,
+            "data": None
+        }
+        article_query = Articles.objects.filter(nid=nid)
+        if not article_query:
+            res['msg'] = '请求错误'
+            return JsonResponse(res)
+        # 文章存在，才执行如下的代码
+        data: dict = request.data
+        data['status'] = 1
+        form = AddArticleForm(data)
+        # 校验不通过
+        if not form.is_valid():
+            res['self'], res['msg'] = clean_form(form)
+            return JsonResponse(res)
+        # 校验通过，直接返回
+        form.cleaned_data['author'] = 'Evan'
+        form.cleaned_data['source'] = "Evan的个人博客"
+        # 用下面这个方法更新数据
+        article_query.update(**form.cleaned_data)
+
+        # 标签的话，直接全部清空，现在传了什么来就直接来什么
+        tags = data.get('tags')
+        article_query.first().tag.clear()
+        # 这里获取的tags和从文章set中获取的tags二者不是同一个
+        for tag in tags:
+            if tag.isdigit():
+                article_query.first().tag.add(tag)
+            else:
+                # 不是数字，那就先创建词条再添加
+                tag_obj = Tags.objects.create(title=tag)
+                article_query.first().tag.add(tag_obj)
+
+        res['code'] = 0
+        res['data'] = article_query.first().nid
+        return JsonResponse(res)

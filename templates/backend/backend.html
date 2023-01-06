@@ -149,7 +149,7 @@
 <script>
     //请求中间件
     axios.interceptors.request.use(request => {
-        if (request.method === 'post') {
+        if (request.method !== 'get') {
             let csrf_token = document.querySelector('input[name="csrfmiddlewaretoken"]').value
             //加上一个请求头
             request.headers['X-CSRFToken'] = csrf_token
@@ -229,7 +229,6 @@
                     abstract: this.abstract,
                     content: editor.querySelector('.editormd-markdown-textarea').value
                 }
-                console.log(data)
                 //在这里把用户添加的信息（我们要的数据）发出去
                 axios.post('/api/article/', data).then(res => {
                     //若用户添加文章出现了错误，就将错误提示信息打在公屏上
@@ -251,6 +250,31 @@
                     let cover = document.getElementById('cover_img')
                     cover.src = v  //属于异步操作，所以要一个定时器
                 }, 1)
+            },
+            //编辑文章的函数
+            edit_article(nid) {
+                let data = {
+                    title: this.input_title,
+                    cover_id: this.cover_id,
+                    recommend: this.recommend,
+                    pwd: this.pwd,
+                    tags: this.tags,
+                    category: this.category_id,
+                    abstract: this.abstract,
+                    content: editor.querySelector('.editormd-markdown-textarea').value
+                }
+                axios.put(`/api/article/${nid}/`, data).then(res => {
+                    //若用户添加文章出现了错误，就将错误提示信息打在公屏上
+                    if (res.code) {
+                        this.$message.error(res.msg)
+                        return
+                    }
+                    //若成功，就跳转
+                    this.$message.success(res.msg)
+                    setTimeout(() => {
+                        location.href = `/article/${res.data}/`
+                    }, 1000)
+                })
             }
         }
     })

@@ -161,7 +161,7 @@
 #app .main .left .blog_article > .body > ul > li .right .article-info > span {
   margin-right: 10px;
 }
-#app .main .left .blog_article > .body > ul > li .right .article-info > span i {
+#app .main .left .blog_article > .body > ul > li .right .article-info > span > i {
   margin-right: 5px;
 }
 #app .main .left .blog_article > .body > ul > li .right > a {

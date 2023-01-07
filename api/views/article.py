@@ -57,7 +57,20 @@ class AddArticleForm(forms.Form):
         return cover_id
 
 
+# 把获取tags部分的提取成一个函数
+def add_article_tags(tags, article_obj):
+    for tag in tags:
+        if tag.isdigit():
+            article_obj.tag.add(tag)
+        else:
+            # 不是数字，那就先创建词条再添加
+            tag_obj = Tags.objects.create(title=tag)
+            article_obj.tag.add(tag_obj)
+
+
+# 添加文章和编辑文章的验证
 class ArticleView(View):
+    # 添加文章
     def post(self, request):
         res = {
             "msg": "文章发布成功",
@@ -77,22 +90,18 @@ class ArticleView(View):
         # 需要先验证，太麻烦了
         form.cleaned_data['author'] = 'Evan'
         form.cleaned_data['source'] = "Evan的个人博客"
-        article_pbj = Articles.objects.create(**form.cleaned_data)
+        article_obj = Articles.objects.create(**form.cleaned_data)
         tags = data.get('tags')
-        for tag in tags:
-            if tag.isdigit():
-                article_pbj.tag.add(tag)
-            else:
-                # 不是数字，那就先创建词条再添加
-                tag_obj = Tags.objects.create(title=tag)
-                article_pbj.tag.add(tag_obj)
+        add_article_tags(tags, article_obj)
 
+        # 准备返回给前端了
         res['code'] = 0
-        res['data'] = article_pbj.nid
+        res['data'] = article_obj.nid
         # res是要返回给前端的信息，而data里面是文章本身的信息
         # 不要二者搞混了
         return JsonResponse(res)
 
+    # 编辑文章
     def put(self, request, nid):
         res = {
             "msg": "文章编辑成功",
@@ -121,14 +130,9 @@ class ArticleView(View):
         tags = data.get('tags')
         article_query.first().tag.clear()
         # 这里获取的tags和从文章set中获取的tags二者不是同一个
-        for tag in tags:
-            if tag.isdigit():
-                article_query.first().tag.add(tag)
-            else:
-                # 不是数字，那就先创建词条再添加
-                tag_obj = Tags.objects.create(title=tag)
-                article_query.first().tag.add(tag_obj)
+        add_article_tags(tags, article_query.first())
 
+        # 准备返回
         res['code'] = 0
         res['data'] = article_query.first().nid
         return JsonResponse(res)

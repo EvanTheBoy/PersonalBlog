@@ -184,31 +184,13 @@
         //后端也做，实现双保险
         created() {
             let img = document.getElementById('cover_img')
-            {#//eval()函数把这个字符串变成数组#}
-            {#let cover_list = eval(img.getAttribute('data'))#}
-            {#//随机取到某张图片的nid#}
-            {#let item = cover_list[Math.floor((Math.random * cover_list.length))]#}
-            {#img.setAttribute('src', item.url)#}
-            {#this.cover_id = item.nid.toString()#}
-
-            let box = document.getElementById('edit_info')
-            this.input_title = box.getAttribute('data_title')
-            this.abstract = box.getAttribute('data_abstract')
-            let pwd = box.getAttribute('data_pwd')
-            if (pwd !== 'None') {
-                this.pwd = pwd
-                this.pwd_active = true
+            let path = location.pathname
+            let index = path.indexOf('add_article')
+            if (index !== -1) {
+                this.init_add_article(img)
+            } else {
+                this.init_edit_article(img)
             }
-            let category_id = box.getAttribute('data_category')
-            if (category_id !== 'None') {
-                this.category_id = category_id
-            }
-            this.tags = eval(box.getAttribute('data_tags'))
-            this.cover_id = box.getAttribute('data_cover_id')
-            let cover_url = box.getAttribute('data_cover_url')
-            img.setAttribute('src', cover_url)
-            let recommend = box.getAttribute('data_recommend')
-            this.recommend = recommend === 'True';
         },
         methods: {
             //下面这个函数直接从官网复制即可
@@ -265,6 +247,36 @@
                 axios.put(`/api/article/${nid}/`, data).then(res => {
                     this.add_edit_article_callback(res)
                 })
+            },
+            //添加文章的初始化
+            init_add_article(img) {
+                //eval()函数把这个字符串变成数组
+                let cover_list = eval(img.getAttribute('data'))
+                //随机取到某张图片的nid
+                let item = cover_list[Math.floor((Math.random * cover_list.length))]
+                img.setAttribute('src', item.url)
+                this.cover_id = item.nid.toString()
+            },
+            //编辑文章的初始化
+            init_edit_article(img) {
+                let box = document.getElementById('edit_info')
+                this.input_title = box.getAttribute('data_title')
+                this.abstract = box.getAttribute('data_abstract')
+                let pwd = box.getAttribute('data_pwd')
+                if (pwd !== 'None') {
+                    this.pwd = pwd
+                    this.pwd_active = true
+                }
+                let category_id = box.getAttribute('data_category')
+                if (category_id !== 'None') {
+                    this.category_id = category_id
+                }
+                this.tags = eval(box.getAttribute('data_tags'))
+                this.cover_id = box.getAttribute('data_cover_id')
+                let cover_url = box.getAttribute('data_cover_url')
+                img.setAttribute('src', cover_url)
+                let recommend = box.getAttribute('data_recommend')
+                this.recommend = recommend === 'True';
             }
         }
     })

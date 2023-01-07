@@ -216,10 +216,10 @@
             add_handleClose(done) {
                 done()
             },
-            //添加文章的函数
-            add_article() {
+            //添加和编辑文章公共部分的代码
+            add_edit_article() {
                 //把用户给文章添加的内容整合进这个data对象里
-                let data = {
+                return {
                     title: this.input_title,
                     cover_id: this.cover_id,
                     recommend: this.recommend,
@@ -229,18 +229,26 @@
                     abstract: this.abstract,
                     content: editor.querySelector('.editormd-markdown-textarea').value
                 }
+            },
+            //添加和编辑文章的回调函数
+            add_edit_article_callback(res) {
+                //若用户添加文章出现了错误，就将错误提示信息打在公屏上
+                if (res.code) {
+                    this.$message.error(res.msg)
+                    return
+                }
+                //若成功，就跳转
+                this.$message.success(res.msg)
+                setTimeout(() => {
+                    location.href = `/article/${res.data}/`
+                }, 1000)
+            },
+            //添加文章的函数
+            add_article() {
+                let data = this.add_edit_article()
                 //在这里把用户添加的信息（我们要的数据）发出去
                 axios.post('/api/article/', data).then(res => {
-                    //若用户添加文章出现了错误，就将错误提示信息打在公屏上
-                    if (res.code) {
-                        this.$message.error(res.msg)
-                        return
-                    }
-                    //若成功，就跳转
-                    this.$message.success(res.msg)
-                    setTimeout(() => {
-                        location.href = `/article/${res.data}/`
-                    }, 1000)
+                    this.add_edit_article_callback(res)
                 })
             },
             //实现选中图片链接后就切换图片
@@ -253,27 +261,9 @@
             },
             //编辑文章的函数
             edit_article(nid) {
-                let data = {
-                    title: this.input_title,
-                    cover_id: this.cover_id,
-                    recommend: this.recommend,
-                    pwd: this.pwd,
-                    tags: this.tags,
-                    category: this.category_id,
-                    abstract: this.abstract,
-                    content: editor.querySelector('.editormd-markdown-textarea').value
-                }
+                let data = this.add_edit_article()
                 axios.put(`/api/article/${nid}/`, data).then(res => {
-                    //若用户添加文章出现了错误，就将错误提示信息打在公屏上
-                    if (res.code) {
-                        this.$message.error(res.msg)
-                        return
-                    }
-                    //若成功，就跳转
-                    this.$message.success(res.msg)
-                    setTimeout(() => {
-                        location.href = `/article/${res.data}/`
-                    }, 1000)
+                    this.add_edit_article_callback(res)
                 })
             }
         }
